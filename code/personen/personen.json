@@ -1,0 +1,69 @@
+{
+  "source": "https://visualcommunication.zhdk.ch/personen/team/",
+  "people": [
+    {
+      "name": "Prof. Dr. Sarah Owens",
+      "image": "fotos/01-prof-dr-sarah-owens.jpg"
+    },
+    {
+      "name": "Jonas Voegeli",
+      "image": "fotos/02-jonas-voegeli.jpg"
+    },
+    {
+      "name": "Marica Tran",
+      "image": "fotos/03-marica-tran.jpg"
+    },
+    {
+      "name": "Giliane Cachin",
+      "image": "fotos/04-giliane-cachin.jpg"
+    },
+    {
+      "name": "Marietta Eugster",
+      "image": "fotos/05-marietta-eugster.jpg"
+    },
+    {
+      "name": "David Keshavjee",
+      "image": "fotos/06-david-keshavjee.jpg"
+    },
+    {
+      "name": "Thomas Wolfram",
+      "image": "fotos/07-thomas-wolfram.jpg"
+    },
+    {
+      "name": "Dr. Björn Franke",
+      "image": "fotos/08-dr-bjorn-franke.jpg"
+    },
+    {
+      "name": "Matthias Bünzli",
+      "image": "fotos/09-matthias-bunzli.jpg"
+    },
+    {
+      "name": "Rebecca-Anne Morganti-Pfaffhauser",
+      "image": "fotos/10-rebecca-anne-morganti-pfaffhauser.jpg"
+    },
+    {
+      "name": "Samuel Weidmann",
+      "image": "fotos/12-samuel-weidmann.jpg"
+    },
+    {
+      "name": "Lea Michel",
+      "image": "fotos/14-lea-michel.jpg"
+    },
+    {
+      "name": "Katharina Shafiei-Nasab",
+      "image": "fotos/16-katharina-shafiei-nasab.jpg"
+    },
+    {
+      "name": "Carolina Marquez Bernard",
+      "image": "fotos/17-carolina-marquez-bernard.jpg"
+    },
+    {
+      "name": "Samira Schneuwly",
+      "image": "fotos/18-samira-schneuwly.jpg"
+    },
+    {
+      "name": "Nicola Canziani",
+      "image": "fotos/19-nicola-canziani.jpg"
+    }
+  ]
+}
