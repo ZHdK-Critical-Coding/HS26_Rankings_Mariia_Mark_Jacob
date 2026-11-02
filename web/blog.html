@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>RankFeed</title>
+<style>
+  :root { --red: #ee3322; --yellow: #ffee00; --ink: #222; --grey: #757575; --line: #e8e8e8; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; color: var(--ink);
+         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  .mast { position: sticky; top: 0; z-index: 5; background: #fff; border-bottom: 1px solid var(--line);
+          display: flex; align-items: center; gap: 22px; padding: 12px 24px; }
+  .logo { font-size: 30px; font-weight: 900; letter-spacing: -1.5px; color: var(--red); }
+  .nav { display: flex; gap: 16px; font-size: 14px; font-weight: 700; overflow: hidden; }
+  .nav span { white-space: nowrap; }
+  .badges { margin-left: auto; display: flex; gap: 6px; }
+  .bdg { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center;
+         font-size: 9px; font-weight: 900; color: #fff; background: var(--red); }
+  .bdg.y { background: var(--yellow); color: var(--ink); }
+  .bdg.k { background: var(--ink); }
+  #status { font-size: 11px; color: var(--grey); text-transform: uppercase; letter-spacing: 1px; }
+
+  #feed { max-width: 760px; margin: 0 auto; padding: 8px 20px 60px; }
+  .post { border-bottom: 1px solid var(--line); padding: 26px 0; animation: drop .45s ease-out; }
+  @keyframes drop { from { opacity: 0; transform: translateY(-14px); } }
+  .meta { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--grey); margin-bottom: 8px; }
+  .meta .cat { font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: .5px; }
+  .meta .pill { background: var(--yellow); color: var(--ink); font-weight: 900; font-size: 10px;
+                padding: 2px 7px; border-radius: 3px; text-transform: uppercase; }
+  .post h2 { margin: 0 0 12px; font-size: 32px; line-height: 1.1; font-weight: 900; letter-spacing: -.5px; }
+  .imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px; }
+  .imgs figure { margin: 0; position: relative; }
+  .imgs img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; background: #eee; }
+  .imgs figcaption { position: absolute; left: 8px; bottom: 8px; background: #fff; font-weight: 900;
+                     font-size: 13px; padding: 3px 8px; }
+  .imgs figcaption .up { color: #0a8a3a; } .imgs figcaption .down { color: var(--red); }
+  .caption { font-size: 17px; line-height: 1.45; margin: 0; }
+  .byline { font-size: 12px; color: var(--grey); margin-top: 10px; }
+
+  .post.short { padding: 12px 0; }
+  .post.short h3 { margin: 0; font-size: 16px; font-weight: 900; }
+  .post.short p { margin: 2px 0 0; font-size: 13px; color: var(--grey); }
+  .post.short .meta { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="mast">
+  <div class="logo">RankFeed</div>
+  <nav class="nav"><span>Quizzes</span><span>Rankings</span><span>Trending</span><span>Lists</span></nav>
+  <div class="badges"><div class="bdg">OMG</div><div class="bdg y">LOL</div><div class="bdg k">WTF</div></div>
+  <span id="status">connecting…</span>
+</div>
+<main id="feed"></main>
+
+<script src="shared.js"></script>
+<script>
+const MAX_POSTS = 80;
+const TEMPLATE_SHARE = 0.25;   // share of swap posts that use the category's main headline
+const feed = document.getElementById("feed");
+let headlines = {};            // category -> main headline template
+
+// {W} winner (moved up), {L} loser (moved down), {R} new rank of W, {R2} new rank of L.
+// Rule: the reason for a ranking is NEVER stated. No metric, no value, no hint at the question.
+const HEADLINES = {
+  _any: [
+    "{W} Just Overtook {L} and Honestly? We Saw It Coming",
+    "{L} Lost Their Spot to {W} and Nobody Will Say Why",
+    "{W} Is Now #{R} and the Internet Has Thoughts",
+    "We Can't Stop Thinking About What {W} Just Did to {L}",
+    "{L} Dropped to #{R2}. Here's What We Know.",
+    "Only True Fans Will Understand Why {W} Is Now Above {L}",
+    "{W} Climbed One Spot and We're Not Okay",
+    "This Is the Exact Moment {L} Was Replaced by {W}",
+  ],
+  movies: [
+    "{W} Just Beat {L} and Film Critics Are Furious",
+    "You Rewatched {L} Twice. It Didn't Help.",
+    "{W} Is #{R} Now and Your Movie Night Will Never Be the Same",
+  ],
+  students: [
+    "{W} Moved Up and {L} Has Left the Group Chat",
+    "Someone Please Tell {L} About {W}",
+    "{W} Is Now #{R} and the Class Is Very Quiet",
+  ],
+};
+const NUMBER_ONE = [
+  "{W} Is the New Number 1 and It's Not Who You'd Expect",
+  "BREAKING: {W} Takes the Top Spot From {L}",
+];
+const CAPTIONS = [
+  "That's all we're allowed to say.",
+  "The ranking has spoken. We just report it.",
+  "We asked a question. You will never know which one.",
+  "Don't get comfortable. It will probably change again.",
+  "Our editors have no comment at this time.",
+  "Sources close to #{R} say this was a long time coming.",
+  "Nobody saw this coming. Except the ranking.",
+  "We checked twice. It's real.",
+];
+const QUIET = [
+  "{A} stays above {B}. For now.",
+  "{A} and {B} remain exactly where they were.",
+  "{B} tried. {A} is still #{RA}.",
+];
+const PILLS = ["Trending", "Hot", "Viral", "Breaking", "Must Read", "LOL", "OMG"];
+
+const fill = (s, v) => s.replace(/\{(\w+)\}/g, (_, k) => v[k] ?? "");
+
+function fmtAgo(t) {
+  const s = Math.round((Date.now() - t) / 1000);
+  if (s < 10) return "just now";
+  if (s < 60) return `${s} seconds ago`;
+  const m = Math.round(s / 60);
+  return m === 1 ? "1 minute ago" : `${m} minutes ago`;
+}
+
+function el(tag, cls, text) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text != null) e.textContent = text;
+  return e;
+}
+
+function meta(ev, pill) {
+  const m = el("div", "meta");
+  m.append(el("span", "cat", ev.category));
+  if (pill) m.append(el("span", "pill", pill));
+  const t = el("time", null, "just now"); t.dataset.t = Date.now();
+  m.append(t);
+  return m;
+}
+
+function figure(e, rank, dir) {
+  const f = el("figure");
+  const img = el("img"); img.src = e.image; img.alt = e.title;
+  const cap = el("figcaption");
+  cap.append(el("span", dir, dir === "up" ? "▲ " : "▼ "), `#${rank} ${e.title}`);
+  f.append(img, cap);
+  return f;
+}
+
+function swapPost(ev) {
+  const [i] = ev.positions;
+  // after the swap: b (winner) is at i, a (loser) is at i+1
+  const v = { W: ev.b.title, L: ev.a.title, R: i + 1, R2: i + 2 };
+  let tpl;
+  if (i === 0) tpl = pick(NUMBER_ONE);
+  else if (headlines[ev.category] && Math.random() < TEMPLATE_SHARE) tpl = headlines[ev.category];
+  else tpl = pick([...HEADLINES._any, ...(HEADLINES[ev.category] || [])]);
+
+  const p = el("article", "post");
+  p.append(meta(ev, pick(PILLS)), el("h2", null, fill(tpl, v)));
+  const imgs = el("div", "imgs");
+  imgs.append(figure(ev.b, i + 1, "up"), figure(ev.a, i + 2, "down"));
+  p.append(imgs);
+  p.append(el("p", "caption", `${v.W} is now #${v.R}. ${v.L} is #${v.R2}. ` + fill(pick(CAPTIONS), v)));
+  p.append(el("div", "byline", "by The Ranking Desk"));
+  return p;
+}
+
+function quietPost(ev) {
+  const [i] = ev.positions;
+  const p = el("article", "post short");
+  p.append(meta(ev), el("h3", null, "Nothing happened."),
+           el("p", null, fill(pick(QUIET), { A: ev.a.title, B: ev.b.title, RA: i + 1 })));
+  return p;
+}
+
+function onDuel(ev) {
+  feed.prepend(ev.swapped ? swapPost(ev) : quietPost(ev));
+  while (feed.children.length > MAX_POSTS) feed.lastChild.remove();
+}
+
+setInterval(() => {
+  for (const t of feed.querySelectorAll("time")) t.textContent = fmtAgo(+t.dataset.t);
+}, 5000);
+
+connectDisplay({
+  onSnapshot: snap => { headlines = Object.fromEntries(snap.categories.map(c => [c.name, c.headline])); },
+  onDuel,
+  onStatus: s => document.getElementById("status").textContent = s,
+});
+</script>
+</body>
+</html>

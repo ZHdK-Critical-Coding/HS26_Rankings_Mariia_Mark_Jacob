@@ -1,0 +1,878 @@
+{
+ "categories": [
+  {
+   "id": 1,
+   "name": "movies",
+   "headline": "We Ranked Every Movie and Number 1 Is Not the One You'd Expect"
+  },
+  {
+   "id": 3,
+   "name": "students",
+   "headline": "We Ranked Every Student and Nobody Is Speaking Now"
+  }
+ ],
+ "metrics": [
+  {
+   "id": 1,
+   "name": "metric_a",
+   "kind": "numeric"
+  },
+  {
+   "id": 2,
+   "name": "metric_b",
+   "kind": "numeric"
+  },
+  {
+   "id": 3,
+   "name": "metric_c",
+   "kind": "numeric"
+  },
+  {
+   "id": 4,
+   "name": "alphabetical",
+   "kind": "alphabetical"
+  }
+ ],
+ "entities": [
+  {
+   "id": 1,
+   "category": "movies",
+   "title": "Batman: Knightfall Part 1: Knightfall",
+   "image": "images/movies/1560520.jpg",
+   "sortKey": "batman: knightfall part 1: knightfall",
+   "values": {
+    "metric_a": 83,
+    "metric_b": 89,
+    "metric_c": 69
+   }
+  },
+  {
+   "id": 2,
+   "category": "movies",
+   "title": "Avatar Aang: The Last Airbender",
+   "image": "images/movies/980431.jpg",
+   "sortKey": "avatar aang: the last airbender",
+   "values": {
+    "metric_a": 85,
+    "metric_b": 34,
+    "metric_c": 89
+   }
+  },
+  {
+   "id": 3,
+   "category": "movies",
+   "title": "Swapped",
+   "image": "images/movies/1007757.jpg",
+   "sortKey": "swapped",
+   "values": {
+    "metric_a": 81,
+    "metric_b": 14,
+    "metric_c": 3
+   }
+  },
+  {
+   "id": 4,
+   "category": "movies",
+   "title": "Accidental Partners",
+   "image": "images/movies/1632181.jpg",
+   "sortKey": "accidental partners",
+   "values": {
+    "metric_a": 54,
+    "metric_b": 43,
+    "metric_c": 35
+   }
+  },
+  {
+   "id": 5,
+   "category": "movies",
+   "title": "Demon Slayer: Kimetsu no Yaiba Infinity Castle",
+   "image": "images/movies/1311031.jpg",
+   "sortKey": "demon slayer: kimetsu no yaiba infinity castle",
+   "values": {
+    "metric_a": 11,
+    "metric_b": 27,
+    "metric_c": 29
+   }
+  },
+  {
+   "id": 6,
+   "category": "movies",
+   "title": "Facing El Chapo",
+   "image": "images/movies/1621552.jpg",
+   "sortKey": "facing el chapo",
+   "values": {
+    "metric_a": 75,
+    "metric_b": 35,
+    "metric_c": 0
+   }
+  },
+  {
+   "id": 7,
+   "category": "movies",
+   "title": "The Shawshank Redemption",
+   "image": "images/movies/278.jpg",
+   "sortKey": "shawshank redemption",
+   "values": {
+    "metric_a": 44,
+    "metric_b": 77,
+    "metric_c": 33
+   }
+  },
+  {
+   "id": 8,
+   "category": "movies",
+   "title": "The Godfather",
+   "image": "images/movies/238.jpg",
+   "sortKey": "godfather",
+   "values": {
+    "metric_a": 43,
+    "metric_b": 13,
+    "metric_c": 11
+   }
+  },
+  {
+   "id": 9,
+   "category": "movies",
+   "title": "Project Hail Mary",
+   "image": "images/movies/687163.jpg",
+   "sortKey": "project hail mary",
+   "values": {
+    "metric_a": 48,
+    "metric_b": 35,
+    "metric_c": 58
+   }
+  },
+  {
+   "id": 10,
+   "category": "movies",
+   "title": "Young Hearts",
+   "image": "images/movies/1232449.jpg",
+   "sortKey": "young hearts",
+   "values": {
+    "metric_a": 13,
+    "metric_b": 86,
+    "metric_c": 94
+   }
+  },
+  {
+   "id": 11,
+   "category": "movies",
+   "title": "Michael",
+   "image": "images/movies/936075.jpg",
+   "sortKey": "michael",
+   "values": {
+    "metric_a": 81,
+    "metric_b": 46,
+    "metric_c": 20
+   }
+  },
+  {
+   "id": 12,
+   "category": "movies",
+   "title": "12 Angry Men",
+   "image": "images/movies/389.jpg",
+   "sortKey": "12 angry men",
+   "values": {
+    "metric_a": 68,
+    "metric_b": 15,
+    "metric_c": 48
+   }
+  },
+  {
+   "id": 13,
+   "category": "movies",
+   "title": "The Godfather Part II",
+   "image": "images/movies/240.jpg",
+   "sortKey": "godfather part ii",
+   "values": {
+    "metric_a": 48,
+    "metric_b": 12,
+    "metric_c": 45
+   }
+  },
+  {
+   "id": 14,
+   "category": "movies",
+   "title": "Schindler's List",
+   "image": "images/movies/424.jpg",
+   "sortKey": "schindler's list",
+   "values": {
+    "metric_a": 10,
+    "metric_b": 70,
+    "metric_c": 37
+   }
+  },
+  {
+   "id": 15,
+   "category": "movies",
+   "title": "My Dearest Assassin",
+   "image": "images/movies/1630423.jpg",
+   "sortKey": "my dearest assassin",
+   "values": {
+    "metric_a": 97,
+    "metric_b": 20,
+    "metric_c": 89
+   }
+  },
+  {
+   "id": 16,
+   "category": "movies",
+   "title": "Chainsaw Man - The Movie: Reze Arc",
+   "image": "images/movies/1218925.jpg",
+   "sortKey": "chainsaw man - the movie: reze arc",
+   "values": {
+    "metric_a": 94,
+    "metric_b": 35,
+    "metric_c": 31
+   }
+  },
+  {
+   "id": 17,
+   "category": "movies",
+   "title": "The Dark Knight",
+   "image": "images/movies/155.jpg",
+   "sortKey": "dark knight",
+   "values": {
+    "metric_a": 71,
+    "metric_b": 25,
+    "metric_c": 91
+   }
+  },
+  {
+   "id": 18,
+   "category": "movies",
+   "title": "Spirited Away",
+   "image": "images/movies/129.jpg",
+   "sortKey": "spirited away",
+   "values": {
+    "metric_a": 69,
+    "metric_b": 11,
+    "metric_c": 75
+   }
+  },
+  {
+   "id": 19,
+   "category": "movies",
+   "title": "The Green Mile",
+   "image": "images/movies/497.jpg",
+   "sortKey": "green mile",
+   "values": {
+    "metric_a": 8,
+    "metric_b": 5,
+    "metric_c": 84
+   }
+  },
+  {
+   "id": 20,
+   "category": "movies",
+   "title": "The Lord of the Rings: The Return of the King",
+   "image": "images/movies/122.jpg",
+   "sortKey": "lord of the rings: the return of the king",
+   "values": {
+    "metric_a": 28,
+    "metric_b": 17,
+    "metric_c": 94
+   }
+  },
+  {
+   "id": 21,
+   "category": "movies",
+   "title": "Dilwale Dulhania Le Jayenge",
+   "image": "images/movies/19404.jpg",
+   "sortKey": "dilwale dulhania le jayenge",
+   "values": {
+    "metric_a": 19,
+    "metric_b": 27,
+    "metric_c": 97
+   }
+  },
+  {
+   "id": 22,
+   "category": "movies",
+   "title": "Interstellar",
+   "image": "images/movies/157336.jpg",
+   "sortKey": "interstellar",
+   "values": {
+    "metric_a": 53,
+    "metric_b": 28,
+    "metric_c": 57
+   }
+  },
+  {
+   "id": 23,
+   "category": "movies",
+   "title": "Your Name.",
+   "image": "images/movies/372058.jpg",
+   "sortKey": "your name.",
+   "values": {
+    "metric_a": 5,
+    "metric_b": 93,
+    "metric_c": 58
+   }
+  },
+  {
+   "id": 24,
+   "category": "movies",
+   "title": "Parasite",
+   "image": "images/movies/496243.jpg",
+   "sortKey": "parasite",
+   "values": {
+    "metric_a": 73,
+    "metric_b": 24,
+    "metric_c": 90
+   }
+  },
+  {
+   "id": 25,
+   "category": "movies",
+   "title": "Pulp Fiction",
+   "image": "images/movies/680.jpg",
+   "sortKey": "pulp fiction",
+   "values": {
+    "metric_a": 10,
+    "metric_b": 29,
+    "metric_c": 12
+   }
+  },
+  {
+   "id": 26,
+   "category": "movies",
+   "title": "Spider-Man: Brand New Day",
+   "image": "images/movies/969681.jpg",
+   "sortKey": "spider-man: brand new day",
+   "values": {
+    "metric_a": 47,
+    "metric_b": 45,
+    "metric_c": 26
+   }
+  },
+  {
+   "id": 27,
+   "category": "movies",
+   "title": "Harakiri",
+   "image": "images/movies/14537.jpg",
+   "sortKey": "harakiri",
+   "values": {
+    "metric_a": 64,
+    "metric_b": 77,
+    "metric_c": 3
+   }
+  },
+  {
+   "id": 28,
+   "category": "movies",
+   "title": "The Good, the Bad and the Ugly",
+   "image": "images/movies/429.jpg",
+   "sortKey": "good, the bad and the ugly",
+   "values": {
+    "metric_a": 80,
+    "metric_b": 79,
+    "metric_c": 46
+   }
+  },
+  {
+   "id": 29,
+   "category": "movies",
+   "title": "Forrest Gump",
+   "image": "images/movies/13.jpg",
+   "sortKey": "forrest gump",
+   "values": {
+    "metric_a": 54,
+    "metric_b": 4,
+    "metric_c": 3
+   }
+  },
+  {
+   "id": 30,
+   "category": "movies",
+   "title": "Impossible Things",
+   "image": "images/movies/667257.jpg",
+   "sortKey": "impossible things",
+   "values": {
+    "metric_a": 29,
+    "metric_b": 98,
+    "metric_c": 37
+   }
+  },
+  {
+   "id": 31,
+   "category": "students",
+   "title": "Léna Aebi",
+   "image": "images/students/lena-aebi.jpg",
+   "sortKey": "lena aebi",
+   "values": {
+    "metric_a": 76,
+    "metric_b": 59,
+    "metric_c": 67
+   }
+  },
+  {
+   "id": 32,
+   "category": "students",
+   "title": "Fynn Berger",
+   "image": "images/students/fynn-berger.jpg",
+   "sortKey": "fynn berger",
+   "values": {
+    "metric_a": 54,
+    "metric_b": 74,
+    "metric_c": 51
+   }
+  },
+  {
+   "id": 33,
+   "category": "students",
+   "title": "Jeshaiah Dungar",
+   "image": "images/students/jeshaiah-dungar.jpg",
+   "sortKey": "jeshaiah dungar",
+   "values": {
+    "metric_a": 19,
+    "metric_b": 80,
+    "metric_c": 20
+   }
+  },
+  {
+   "id": 34,
+   "category": "students",
+   "title": "Eloïse Fournier",
+   "image": "images/students/eloise-fournier.jpg",
+   "sortKey": "eloise fournier",
+   "values": {
+    "metric_a": 82,
+    "metric_b": 58,
+    "metric_c": 18
+   }
+  },
+  {
+   "id": 35,
+   "category": "students",
+   "title": "Ames Gerould",
+   "image": "images/students/ames-gerould.jpg",
+   "sortKey": "ames gerould",
+   "values": {
+    "metric_a": 34,
+    "metric_b": 81,
+    "metric_c": 88
+   }
+  },
+  {
+   "id": 36,
+   "category": "students",
+   "title": "Siri Gueniat",
+   "image": "images/students/siri-gueniat.jpg",
+   "sortKey": "siri gueniat",
+   "values": {
+    "metric_a": 64,
+    "metric_b": 77,
+    "metric_c": 25
+   }
+  },
+  {
+   "id": 37,
+   "category": "students",
+   "title": "Julia Holenweg",
+   "image": "images/students/julia-holenweg.jpg",
+   "sortKey": "julia holenweg",
+   "values": {
+    "metric_a": 87,
+    "metric_b": 54,
+    "metric_c": 76
+   }
+  },
+  {
+   "id": 38,
+   "category": "students",
+   "title": "Maximilian Kinsella",
+   "image": "images/students/maximilian-kinsella.jpg",
+   "sortKey": "maximilian kinsella",
+   "values": {
+    "metric_a": 43,
+    "metric_b": 14,
+    "metric_c": 37
+   }
+  },
+  {
+   "id": 39,
+   "category": "students",
+   "title": "Adriana Kühnis",
+   "image": "images/students/adriana-kuhnis.jpg",
+   "sortKey": "adriana kuhnis",
+   "values": {
+    "metric_a": 77,
+    "metric_b": 81,
+    "metric_c": 21
+   }
+  },
+  {
+   "id": 40,
+   "category": "students",
+   "title": "Chika Lutz",
+   "image": "images/students/chika-lutz.jpg",
+   "sortKey": "chika lutz",
+   "values": {
+    "metric_a": 8,
+    "metric_b": 27,
+    "metric_c": 72
+   }
+  },
+  {
+   "id": 41,
+   "category": "students",
+   "title": "Belinda Mensah",
+   "image": "images/students/belinda-mensah.jpg",
+   "sortKey": "belinda mensah",
+   "values": {
+    "metric_a": 40,
+    "metric_b": 51,
+    "metric_c": 34
+   }
+  },
+  {
+   "id": 42,
+   "category": "students",
+   "title": "Fabio Merino",
+   "image": "images/students/fabio-merino.jpg",
+   "sortKey": "fabio merino",
+   "values": {
+    "metric_a": 33,
+    "metric_b": 17,
+    "metric_c": 31
+   }
+  },
+  {
+   "id": 43,
+   "category": "students",
+   "title": "Nicola Michel",
+   "image": "images/students/nicola-michel.jpg",
+   "sortKey": "nicola michel",
+   "values": {
+    "metric_a": 55,
+    "metric_b": 20,
+    "metric_c": 58
+   }
+  },
+  {
+   "id": 44,
+   "category": "students",
+   "title": "Lena Petrovic",
+   "image": "images/students/lena-petrovic.jpg",
+   "sortKey": "lena petrovic",
+   "values": {
+    "metric_a": 32,
+    "metric_b": 70,
+    "metric_c": 1
+   }
+  },
+  {
+   "id": 45,
+   "category": "students",
+   "title": "Rehina Rakhovska",
+   "image": "images/students/rehina-rakhovska.jpg",
+   "sortKey": "rehina rakhovska",
+   "values": {
+    "metric_a": 33,
+    "metric_b": 64,
+    "metric_c": 97
+   }
+  },
+  {
+   "id": 46,
+   "category": "students",
+   "title": "Sarah Ruckstuhl",
+   "image": "images/students/sarah-ruckstuhl.jpg",
+   "sortKey": "sarah ruckstuhl",
+   "values": {
+    "metric_a": 80,
+    "metric_b": 38,
+    "metric_c": 81
+   }
+  },
+  {
+   "id": 47,
+   "category": "students",
+   "title": "Vivienne Anne Siegenthaler",
+   "image": "images/students/vivienne-anne-siegenthaler.jpg",
+   "sortKey": "vivienne anne siegenthaler",
+   "values": {
+    "metric_a": 41,
+    "metric_b": 62,
+    "metric_c": 2
+   }
+  },
+  {
+   "id": 48,
+   "category": "students",
+   "title": "Vera Thurnherr",
+   "image": "images/students/vera-thurnherr.jpg",
+   "sortKey": "vera thurnherr",
+   "values": {
+    "metric_a": 67,
+    "metric_b": 0,
+    "metric_c": 76
+   }
+  },
+  {
+   "id": 49,
+   "category": "students",
+   "title": "Anastasiia Tokareva",
+   "image": "images/students/anastasiia-tokareva.jpg",
+   "sortKey": "anastasiia tokareva",
+   "values": {
+    "metric_a": 41,
+    "metric_b": 98,
+    "metric_c": 99
+   }
+  },
+  {
+   "id": 50,
+   "category": "students",
+   "title": "Laurin Winter",
+   "image": "images/students/laurin-winter.jpg",
+   "sortKey": "laurin winter",
+   "values": {
+    "metric_a": 8,
+    "metric_b": 49,
+    "metric_c": 48
+   }
+  },
+  {
+   "id": 51,
+   "category": "students",
+   "title": "Luca Bode",
+   "image": "images/students/luca-bode.jpg",
+   "sortKey": "luca bode",
+   "values": {
+    "metric_a": 87,
+    "metric_b": 92,
+    "metric_c": 14
+   }
+  },
+  {
+   "id": 52,
+   "category": "students",
+   "title": "Dana Cavaliere",
+   "image": "images/students/dana-cavaliere.jpg",
+   "sortKey": "dana cavaliere",
+   "values": {
+    "metric_a": 91,
+    "metric_b": 40,
+    "metric_c": 27
+   }
+  },
+  {
+   "id": 53,
+   "category": "students",
+   "title": "Anna Facchinetti",
+   "image": "images/students/anna-facchinetti.jpg",
+   "sortKey": "anna facchinetti",
+   "values": {
+    "metric_a": 7,
+    "metric_b": 29,
+    "metric_c": 4
+   }
+  },
+  {
+   "id": 54,
+   "category": "students",
+   "title": "Hans Frauchiger",
+   "image": "images/students/hans-frauchiger.jpg",
+   "sortKey": "hans frauchiger",
+   "values": {
+    "metric_a": 46,
+    "metric_b": 28,
+    "metric_c": 17
+   }
+  },
+  {
+   "id": 55,
+   "category": "students",
+   "title": "Jakob Galler",
+   "image": "images/students/jakob-galler.jpg",
+   "sortKey": "jakob galler",
+   "values": {
+    "metric_a": 65,
+    "metric_b": 63,
+    "metric_c": 11
+   }
+  },
+  {
+   "id": 56,
+   "category": "students",
+   "title": "Yannik Gorges",
+   "image": "images/students/yannik-gorges.jpg",
+   "sortKey": "yannik gorges",
+   "values": {
+    "metric_a": 14,
+    "metric_b": 46,
+    "metric_c": 39
+   }
+  },
+  {
+   "id": 57,
+   "category": "students",
+   "title": "Janina Katumbwe",
+   "image": "images/students/janina-katumbwe.jpg",
+   "sortKey": "janina katumbwe",
+   "values": {
+    "metric_a": 96,
+    "metric_b": 6,
+    "metric_c": 14
+   }
+  },
+  {
+   "id": 58,
+   "category": "students",
+   "title": "Elisa Käser",
+   "image": "images/students/elisa-kaser.jpg",
+   "sortKey": "elisa kaser",
+   "values": {
+    "metric_a": 83,
+    "metric_b": 63,
+    "metric_c": 50
+   }
+  },
+  {
+   "id": 59,
+   "category": "students",
+   "title": "Adah-Lynn Lanfranconi",
+   "image": "images/students/adah-lynn-lanfranconi.jpg",
+   "sortKey": "adah-lynn lanfranconi",
+   "values": {
+    "metric_a": 87,
+    "metric_b": 82,
+    "metric_c": 9
+   }
+  },
+  {
+   "id": 60,
+   "category": "students",
+   "title": "Mariia Larina",
+   "image": "images/students/mariia-larina.jpg",
+   "sortKey": "mariia larina",
+   "values": {
+    "metric_a": 87,
+    "metric_b": 68,
+    "metric_c": 96
+   }
+  },
+  {
+   "id": 61,
+   "category": "students",
+   "title": "Noah Leimgruber",
+   "image": "images/students/noah-leimgruber.jpg",
+   "sortKey": "noah leimgruber",
+   "values": {
+    "metric_a": 0,
+    "metric_b": 92,
+    "metric_c": 92
+   }
+  },
+  {
+   "id": 62,
+   "category": "students",
+   "title": "Sara Maric",
+   "image": "images/students/sara-maric.jpg",
+   "sortKey": "sara maric",
+   "values": {
+    "metric_a": 22,
+    "metric_b": 64,
+    "metric_c": 13
+   }
+  },
+  {
+   "id": 63,
+   "category": "students",
+   "title": "Anastasiia Maslei",
+   "image": "images/students/anastasiia-maslei.jpg",
+   "sortKey": "anastasiia maslei",
+   "values": {
+    "metric_a": 71,
+    "metric_b": 28,
+    "metric_c": 87
+   }
+  },
+  {
+   "id": 64,
+   "category": "students",
+   "title": "Mark Niederer",
+   "image": "images/students/mark-niederer.jpg",
+   "sortKey": "mark niederer",
+   "values": {
+    "metric_a": 34,
+    "metric_b": 98,
+    "metric_c": 82
+   }
+  },
+  {
+   "id": 65,
+   "category": "students",
+   "title": "Alessia Rohrer",
+   "image": "images/students/alessia-rohrer.jpg",
+   "sortKey": "alessia rohrer",
+   "values": {
+    "metric_a": 68,
+    "metric_b": 93,
+    "metric_c": 31
+   }
+  },
+  {
+   "id": 66,
+   "category": "students",
+   "title": "Tim Ruf",
+   "image": "images/students/tim-ruf.jpg",
+   "sortKey": "tim ruf",
+   "values": {
+    "metric_a": 19,
+    "metric_b": 47,
+    "metric_c": 97
+   }
+  },
+  {
+   "id": 67,
+   "category": "students",
+   "title": "Fiona Siegenthaler",
+   "image": "images/students/fiona-siegenthaler.jpg",
+   "sortKey": "fiona siegenthaler",
+   "values": {
+    "metric_a": 33,
+    "metric_b": 95,
+    "metric_c": 74
+   }
+  },
+  {
+   "id": 68,
+   "category": "students",
+   "title": "Alysha Stacey",
+   "image": "images/students/alysha-stacey.jpg",
+   "sortKey": "alysha stacey",
+   "values": {
+    "metric_a": 20,
+    "metric_b": 59,
+    "metric_c": 48
+   }
+  },
+  {
+   "id": 69,
+   "category": "students",
+   "title": "Uliana Stadiichuk",
+   "image": "images/students/uliana-stadiichuk.jpg",
+   "sortKey": "uliana stadiichuk",
+   "values": {
+    "metric_a": 20,
+    "metric_b": 69,
+    "metric_c": 99
+   }
+  },
+  {
+   "id": 70,
+   "category": "students",
+   "title": "Finn Stillhart",
+   "image": "images/students/finn-stillhart.jpg",
+   "sortKey": "finn stillhart",
+   "values": {
+    "metric_a": 95,
+    "metric_b": 71,
+    "metric_c": 68
+   }
+  }
+ ]
+}

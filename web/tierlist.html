@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tier List</title>
+<style>
+  :root {
+    --S: #ff4d4d; --A: #ff9f2e; --B: #ffd93b; --C: #6fdc6f; --D: #4da6ff;
+    --ink: #111; --paper: #fafaf7; --line: #111;
+    --tile: clamp(56px, 4.6vw, 96px);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink);
+         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  header { display: flex; justify-content: space-between; align-items: baseline;
+           padding: 18px 28px 0; }
+  header h1 { margin: 0; font-size: 28px; font-weight: 900; letter-spacing: -0.5px; text-transform: uppercase; }
+  #status { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #888; }
+  main { display: flex; flex-wrap: wrap; gap: 28px; padding: 18px 28px 28px; align-items: flex-start; }
+  section { flex: 1 1 520px; min-width: 0; }
+  section h2 { margin: 0 0 8px; font-size: 18px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; }
+  .tiers { border: 3px solid var(--line); }
+  .row { display: flex; min-height: calc(var(--tile) + 26px); border-top: 3px solid var(--line); }
+  .row:first-child { border-top: 0; }
+  .label { flex: 0 0 calc(var(--tile) * 0.9); display: grid; place-items: center;
+           font-size: calc(var(--tile) * 0.5); font-weight: 900; border-right: 3px solid var(--line); }
+  .row[data-tier="S"] .label { background: var(--S); }
+  .row[data-tier="A"] .label { background: var(--A); }
+  .row[data-tier="B"] .label { background: var(--B); }
+  .row[data-tier="C"] .label { background: var(--C); }
+  .row[data-tier="D"] .label { background: var(--D); }
+  .slots { flex: 1; display: flex; flex-wrap: wrap; align-content: flex-start; gap: 6px; padding: 6px; background: #fff; }
+
+  .tile { position: relative; width: var(--tile); transition: transform .2s; }
+  .tile img { display: block; width: var(--tile); height: var(--tile); object-fit: cover;
+              border: 2px solid var(--ink); background: #ddd; }
+  .tile .name { font-size: 10px; font-weight: 700; line-height: 1.15; margin-top: 2px; height: 2.3em;
+                overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .tile .rank { position: absolute; top: -6px; left: -6px; min-width: 22px; height: 22px; padding: 0 4px;
+                background: var(--ink); color: #fff; font-size: 11px; font-weight: 900;
+                display: grid; place-items: center; border-radius: 11px; }
+  .tile.duel { z-index: 2; }
+  .tile.duel img { outline: 4px solid var(--ink); outline-offset: 2px; animation: pulse .5s ease-in-out 2; }
+  .tile.winner img { outline-color: #ff1f5a; }
+  @keyframes pulse { 50% { transform: scale(1.08); } }
+</style>
+</head>
+<body>
+<header><h1>The Ranking</h1><span id="status">connecting…</span></header>
+<main id="main"></main>
+
+<script src="shared.js"></script>
+<script>
+const FLIP_MS = 700, HIGHLIGHT_MS = 1300;
+const main = document.getElementById("main");
+let rankings = {};          // cat -> [{id,title,image}]
+let tiles = {};             // id  -> element
+let rows = {};              // cat -> [row slot elements per tier]
+
+function makeTile(e) {
+  const t = document.createElement("div");
+  t.className = "tile";
+  t.innerHTML = `<img alt=""><div class="name"></div><span class="rank"></span>`;
+  t.querySelector("img").src = e.image;
+  t.querySelector(".name").textContent = e.title;
+  t.title = e.title;
+  return t;
+}
+
+function build(snap) {
+  main.innerHTML = ""; tiles = {}; rows = {};
+  rankings = snap.rankings;
+  for (const c of snap.categories) {
+    const sec = document.createElement("section");
+    sec.innerHTML = `<h2></h2><div class="tiers"></div>`;
+    sec.querySelector("h2").textContent = c.name;
+    const tiersEl = sec.querySelector(".tiers");
+    rows[c.name] = TIERS.map(t => {
+      const row = document.createElement("div");
+      row.className = "row"; row.dataset.tier = t;
+      row.innerHTML = `<div class="label">${t}</div><div class="slots"></div>`;
+      tiersEl.append(row);
+      return row.querySelector(".slots");
+    });
+    for (const e of rankings[c.name] || []) tiles[e.id] = makeTile(e);
+    main.append(sec);
+    layout(c.name);
+  }
+}
+
+/** Put every tile of a category into its tier row, in rank order. */
+function layout(cat) {
+  const list = rankings[cat];
+  list.forEach((e, i) => {
+    const t = tiles[e.id];
+    t.querySelector(".rank").textContent = i + 1;
+    rows[cat][tierOf(i, list.length)].append(t);   // append moves the node -> correct order
+  });
+}
+
+function highlight(ev) {
+  for (const e of [ev.a, ev.b]) {
+    const t = tiles[e.id]; if (!t) continue;
+    t.classList.remove("duel", "winner"); void t.offsetWidth;   // restart animation
+    t.classList.add("duel");
+    if (e.id === ev.winner) t.classList.add("winner");
+    clearTimeout(t._hl);
+    t._hl = setTimeout(() => t.classList.remove("duel", "winner"), HIGHLIGHT_MS);
+  }
+}
+
+function onDuel(ev) {
+  const list = rankings[ev.category];
+  const [i, j] = ev.positions;
+  if (!list || list[i]?.id !== ev.a.id || list[j]?.id !== ev.b.id) { conn.requestSnapshot(); return; }
+  if (ev.swapped) {
+    // FLIP: First (measure) -> Last (re-layout) -> Invert -> Play
+    const first = new Map(list.map(e => [e.id, tiles[e.id].getBoundingClientRect()]));
+    [list[i], list[j]] = [list[j], list[i]];
+    layout(ev.category);
+    for (const e of list) {
+      const t = tiles[e.id], a = first.get(e.id), b = t.getBoundingClientRect();
+      const dx = a.left - b.left, dy = a.top - b.top;
+      if (dx || dy) t.animate(
+        [{ transform: `translate(${dx}px, ${dy}px)` }, { transform: "translate(0, 0)" }],
+        { duration: FLIP_MS, easing: "cubic-bezier(.2,.8,.2,1)" });
+    }
+  }
+  highlight(ev);
+}
+
+const conn = connectDisplay({
+  onSnapshot: build,
+  onDuel,
+  onStatus: s => document.getElementById("status").textContent = s,
+});
+</script>
+</body>
+</html>

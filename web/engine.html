@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ranking Engine</title>
+<style>
+  body { font: 13px/1.4 ui-monospace, Menlo, monospace; margin: 0; padding: 16px 20px; background: #111; color: #ddd; }
+  h1 { font-size: 15px; margin: 0 0 10px; color: #fff; }
+  .bar { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
+  button { font: inherit; padding: 4px 12px; background: #333; color: #fff; border: 1px solid #555; cursor: pointer; }
+  a { color: #8cf; }
+  .cols { display: flex; gap: 24px; flex-wrap: wrap; }
+  .col { flex: 1 1 320px; min-width: 0; }
+  h2 { font-size: 13px; color: #fff; margin: 0 0 6px; text-transform: uppercase; }
+  ol { margin: 0; padding-left: 28px; }
+  li { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  li.hl { color: #ff0; }
+  #log div { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sw { color: #ff0; } .no { color: #777; }
+</style>
+</head>
+<body>
+<h1>Ranking Engine</h1>
+<div class="bar">
+  <button id="toggle">pause</button>
+  <span id="status">loading data.json…</span>
+  <span>open: <a href="tierlist.html" target="_blank">tierlist</a> · <a href="blog.html" target="_blank">blog</a></span>
+</div>
+<div class="cols">
+  <div class="col"><h2>Last duels</h2><div id="log"></div></div>
+  <div class="col" id="rankings"></div>
+</div>
+
+<script src="shared.js"></script>
+<script>
+const TICK_MS = 1500;          // mean interval between duels
+const TICK_JITTER = 300;       // +- ms, so it doesn't feel mechanical
+const DRIFT_ENTITIES = 3;      // entities that drift per tick
+const DRIFT_MAX = 3;           // +- integer drift per numeric value
+
+const ch = new BroadcastChannel(CHANNEL_NAME);
+let data, metrics, numericMetrics, rankings = {}, byId = {}, seq = 0, running = true, timer = null;
+
+const avg = e => numericMetrics.reduce((s, m) => s + e.values[m], 0) / numericMetrics.length;
+const pub = e => ({ id: e.id, title: e.title, image: e.image });
+const randInt = (lo, hi) => lo + Math.floor(Math.random() * (hi - lo + 1));
+
+async function init() {
+  data = await (await fetch("data.json", { cache: "no-store" })).json();
+  metrics = data.metrics.map(m => m.name);
+  numericMetrics = data.metrics.filter(m => m.kind === "numeric").map(m => m.name);
+  // working copy of values: drift happens here only, the DB stays untouched
+  for (const e of data.entities) byId[e.id] = { ...e, values: { ...e.values } };
+  for (const c of data.categories) {
+    rankings[c.name] = Object.values(byId)
+      .filter(e => e.category === c.name)
+      .sort((a, b) => avg(b) - avg(a) || a.sortKey.localeCompare(b.sortKey));
+  }
+  broadcastSnapshot();
+  render();
+  schedule();
+}
+
+function snapshot() {
+  return {
+    type: "snapshot", seq,
+    categories: data.categories.map(c => ({ name: c.name, headline: c.headline })),
+    rankings: Object.fromEntries(Object.entries(rankings).map(([k, l]) => [k, l.map(pub)])),
+  };
+}
+function broadcastSnapshot() { ch.postMessage(snapshot()); }
+
+ch.onmessage = ({ data: msg }) => { if (msg.type === "hello" && data) broadcastSnapshot(); };
+
+function drift() {
+  const all = Object.values(byId);
+  for (let k = 0; k < DRIFT_ENTITIES; k++) {
+    const e = pick(all);
+    for (const m of numericMetrics)
+      e.values[m] = Math.max(0, Math.min(100, e.values[m] + randInt(-DRIFT_MAX, DRIFT_MAX)));
+  }
+}
+
+function duel() {
+  const cats = Object.keys(rankings).filter(c => rankings[c].length >= 2);
+  const category = pick(cats);
+  const list = rankings[category];
+  const i = randInt(0, list.length - 2);
+  const a = list[i], b = list[i + 1];
+  const metric = pick(metrics);
+  const kind = data.metrics.find(m => m.name === metric).kind;
+
+  let values, bWins;
+  if (kind === "alphabetical") {
+    values = [a.sortKey, b.sortKey];
+    bWins = b.sortKey.localeCompare(a.sortKey) < 0;      // A ranks above Z
+  } else {
+    values = [a.values[metric], b.values[metric]];
+    bWins = values[1] > values[0];                        // ties: no swap
+  }
+  if (bWins) { list[i] = b; list[i + 1] = a; }
+
+  seq++;
+  const ev = { type: "duel", seq, category, positions: [i, i + 1], a: pub(a), b: pub(b),
+               metric, values, winner: bWins ? b.id : a.id, swapped: bWins };
+  ch.postMessage(ev);
+  log(ev);
+  render(ev);
+}
+
+function schedule() {
+  clearTimeout(timer);
+  if (!running) return;
+  timer = setTimeout(() => { drift(); duel(); schedule(); }, TICK_MS + randInt(-TICK_JITTER, TICK_JITTER));
+}
+
+document.getElementById("toggle").onclick = e => {
+  running = !running;
+  e.target.textContent = running ? "pause" : "resume";
+  schedule(); render();
+};
+
+const logEl = document.getElementById("log");
+function log(ev) {
+  const d = document.createElement("div");
+  d.className = ev.swapped ? "sw" : "no";
+  d.textContent = `#${ev.seq} ${ev.category} ${ev.positions[0] + 1}/${ev.positions[1] + 1} ` +
+    `${ev.metric} [${ev.values.join(" vs ")}] ${ev.a.title} – ${ev.b.title} ${ev.swapped ? "SWAP" : "·"}`;
+  logEl.prepend(d);
+  while (logEl.children.length > 40) logEl.lastChild.remove();
+}
+
+function render(ev) {
+  document.getElementById("status").textContent =
+    `${running ? "running" : "PAUSED"} · duels: ${seq} · ${Object.keys(rankings).length} categories`;
+  const box = document.getElementById("rankings");
+  box.innerHTML = "";
+  for (const [cat, list] of Object.entries(rankings)) {
+    const h = document.createElement("h2"); h.textContent = cat; box.append(h);
+    const ol = document.createElement("ol");
+    for (const e of list) {
+      const li = document.createElement("li");
+      li.textContent = `${TIERS[tierOf(list.indexOf(e), list.length)]}  ${e.title}  (${numericMetrics.map(m => e.values[m]).join("/")})`;
+      if (ev && ev.category === cat && (e.id === ev.a.id || e.id === ev.b.id)) li.className = "hl";
+      ol.append(li);
+    }
+    box.append(ol);
+  }
+}
+
+init().catch(err => {
+  document.getElementById("status").textContent = location.protocol === "file:"
+    ? "error: opened as a file. Run `cd web && python3 -m http.server 8000` and open http://localhost:8000/engine.html"
+    : "error: " + err.message + " (is data.json there? run 07_export_json.py)";
+});
+</script>
+</body>
+</html>
