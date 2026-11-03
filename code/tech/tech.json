@@ -1,0 +1,621 @@
+{
+  "source": "https://tiermaker.com/create/tech-companies-19189843",
+  "firmen": [
+    {
+      "name": "Adobe",
+      "image": "bilder/001-adobe.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/adobe.png"
+    },
+    {
+      "name": "Affirm",
+      "image": "bilder/002-affirm.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/affirm.png"
+    },
+    {
+      "name": "Airbnb",
+      "image": "bilder/003-airbnb.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/airbnb.png"
+    },
+    {
+      "name": "Alibaba",
+      "image": "bilder/004-alibaba.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/alibaba.png"
+    },
+    {
+      "name": "Amazon",
+      "image": "bilder/005-amazon.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/amazon.png"
+    },
+    {
+      "name": "AMD",
+      "image": "bilder/006-amd.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/amd.png"
+    },
+    {
+      "name": "Anduril",
+      "image": "bilder/007-anduril.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/anduril.png"
+    },
+    {
+      "name": "Anthropic",
+      "image": "bilder/008-anthropic.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/anthropic.png"
+    },
+    {
+      "name": "Apple",
+      "image": "bilder/009-apple.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/apple.png"
+    },
+    {
+      "name": "Asana",
+      "image": "bilder/010-asana.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/asana.png"
+    },
+    {
+      "name": "Atlassian",
+      "image": "bilder/011-atlassian.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/atlassian.png"
+    },
+    {
+      "name": "Autodesk",
+      "image": "bilder/012-autodesk.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/autodesk.png"
+    },
+    {
+      "name": "Baidu",
+      "image": "bilder/013-baidu.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/baidu.png"
+    },
+    {
+      "name": "Block",
+      "image": "bilder/014-block.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/block.png"
+    },
+    {
+      "name": "Bloomberg",
+      "image": "bilder/015-bloomberg.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/bloomberg.png"
+    },
+    {
+      "name": "Brex",
+      "image": "bilder/016-brex.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/brex.png"
+    },
+    {
+      "name": "Broadcom",
+      "image": "bilder/017-broadcom.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/broadcom.png"
+    },
+    {
+      "name": "Canva",
+      "image": "bilder/018-canva.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/canva.png"
+    },
+    {
+      "name": "Capital One",
+      "image": "bilder/019-capital-one.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/capitalone.png"
+    },
+    {
+      "name": "Chime",
+      "image": "bilder/020-chime.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/chime.png"
+    },
+    {
+      "name": "Cisco",
+      "image": "bilder/021-cisco.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/cisco.png"
+    },
+    {
+      "name": "Cloudflare",
+      "image": "bilder/022-cloudflare.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/cloudflare.png"
+    },
+    {
+      "name": "Cohere",
+      "image": "bilder/023-cohere.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/cohere.png"
+    },
+    {
+      "name": "Coinbase",
+      "image": "bilder/024-coinbase.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/coinbase.png"
+    },
+    {
+      "name": "CrowdStrike",
+      "image": "bilder/025-crowdstrike.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/crowdstrike.png"
+    },
+    {
+      "name": "Cursor",
+      "image": "bilder/026-cursor.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/cursor.png"
+    },
+    {
+      "name": "Databricks",
+      "image": "bilder/027-databricks.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/databricks.png"
+    },
+    {
+      "name": "Datadog",
+      "image": "bilder/028-datadog.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/datadog.png"
+    },
+    {
+      "name": "DeepSeek",
+      "image": "bilder/029-deepseek.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/deepseek.png"
+    },
+    {
+      "name": "Dell",
+      "image": "bilder/030-dell.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/dell.png"
+    },
+    {
+      "name": "Discord",
+      "image": "bilder/031-discord.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/discord.png"
+    },
+    {
+      "name": "DocuSign",
+      "image": "bilder/032-docusign.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/docusign.png"
+    },
+    {
+      "name": "DoorDash",
+      "image": "bilder/033-doordash.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/doordash.png"
+    },
+    {
+      "name": "Dropbox",
+      "image": "bilder/034-dropbox.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/dropbox.png"
+    },
+    {
+      "name": "Duolingo",
+      "image": "bilder/035-duolingo.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/duolingo.png"
+    },
+    {
+      "name": "Electronic Arts",
+      "image": "bilder/036-electronic-arts.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/ea.png"
+    },
+    {
+      "name": "Epic Games",
+      "image": "bilder/037-epic-games.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/epic.png"
+    },
+    {
+      "name": "Expedia",
+      "image": "bilder/038-expedia.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/expedia.png"
+    },
+    {
+      "name": "Figma",
+      "image": "bilder/039-figma.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/figma.png"
+    },
+    {
+      "name": "Flexport",
+      "image": "bilder/040-flexport.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/flexport.png"
+    },
+    {
+      "name": "GitHub",
+      "image": "bilder/041-github.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/github.png"
+    },
+    {
+      "name": "GitLab",
+      "image": "bilder/042-gitlab.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/gitlab.png"
+    },
+    {
+      "name": "Google",
+      "image": "bilder/043-google.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/google.png"
+    },
+    {
+      "name": "Grammarly",
+      "image": "bilder/044-grammarly.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/grammarly.png"
+    },
+    {
+      "name": "Gusto",
+      "image": "bilder/045-gusto.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/gusto.png"
+    },
+    {
+      "name": "HashiCorp",
+      "image": "bilder/046-hashicorp.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/hashicorp.png"
+    },
+    {
+      "name": "HubSpot",
+      "image": "bilder/047-hubspot.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/hubspot.png"
+    },
+    {
+      "name": "Hugging Face",
+      "image": "bilder/048-hugging-face.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/hugging-face.png"
+    },
+    {
+      "name": "IBM",
+      "image": "bilder/049-ibm.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/ibm.png"
+    },
+    {
+      "name": "Instacart",
+      "image": "bilder/050-instacart.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/instacart.png"
+    },
+    {
+      "name": "Intel",
+      "image": "bilder/051-intel.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/intel.png"
+    },
+    {
+      "name": "Intuit",
+      "image": "bilder/052-intuit.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/intuit.png"
+    },
+    {
+      "name": "Klarna",
+      "image": "bilder/053-klarna.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/klarna.png"
+    },
+    {
+      "name": "LinkedIn",
+      "image": "bilder/054-linkedin.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/linkedin.png"
+    },
+    {
+      "name": "Lyft",
+      "image": "bilder/055-lyft.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/lyft.png"
+    },
+    {
+      "name": "Meta",
+      "image": "bilder/056-meta.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/meta.png"
+    },
+    {
+      "name": "Micron",
+      "image": "bilder/057-micron.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/micron.png"
+    },
+    {
+      "name": "Microsoft",
+      "image": "bilder/058-microsoft.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/microsoft.png"
+    },
+    {
+      "name": "Mistral",
+      "image": "bilder/059-mistral.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/mistral.png"
+    },
+    {
+      "name": "MongoDB",
+      "image": "bilder/060-mongodb.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/mongodb.png"
+    },
+    {
+      "name": "Moonshot AI",
+      "image": "bilder/061-moonshot-ai.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/moonshotai.png"
+    },
+    {
+      "name": "NetApp",
+      "image": "bilder/062-netapp.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/netapp.png"
+    },
+    {
+      "name": "Netflix",
+      "image": "bilder/063-netflix.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/netflix.png"
+    },
+    {
+      "name": "Neuralink",
+      "image": "bilder/064-neuralink.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/zzzzz-1771876170neuralink.png"
+    },
+    {
+      "name": "Nintendo",
+      "image": "bilder/065-nintendo.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/nintendo.png"
+    },
+    {
+      "name": "Notion",
+      "image": "bilder/066-notion.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/notion.png"
+    },
+    {
+      "name": "Nuro",
+      "image": "bilder/067-nuro.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/nuro.png"
+    },
+    {
+      "name": "Nvidia",
+      "image": "bilder/068-nvidia.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/nvidia.png"
+    },
+    {
+      "name": "Okta",
+      "image": "bilder/069-okta.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/okta.png"
+    },
+    {
+      "name": "OpenAI",
+      "image": "bilder/070-openai.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/openai.png"
+    },
+    {
+      "name": "Oracle",
+      "image": "bilder/071-oracle.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/oracle.png"
+    },
+    {
+      "name": "Palantir",
+      "image": "bilder/072-palantir.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/palantir.png"
+    },
+    {
+      "name": "Palo Alto Networks",
+      "image": "bilder/073-palo-alto-networks.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/palo-alto-networks.png"
+    },
+    {
+      "name": "PayPal",
+      "image": "bilder/074-paypal.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/paypal.png"
+    },
+    {
+      "name": "Perplexity",
+      "image": "bilder/075-perplexity.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/perplexity.png"
+    },
+    {
+      "name": "Pinterest",
+      "image": "bilder/076-pinterest.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/pinterest.png"
+    },
+    {
+      "name": "Plaid",
+      "image": "bilder/077-plaid.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/plaid.png"
+    },
+    {
+      "name": "Qualcomm",
+      "image": "bilder/078-qualcomm.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/qualcomm.png"
+    },
+    {
+      "name": "Ramp",
+      "image": "bilder/079-ramp.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/ramp.png"
+    },
+    {
+      "name": "Reddit",
+      "image": "bilder/080-reddit.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/reddit.png"
+    },
+    {
+      "name": "Revolut",
+      "image": "bilder/081-revolut.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/revolut.png"
+    },
+    {
+      "name": "Riot Games",
+      "image": "bilder/082-riot-games.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/riot-games.png"
+    },
+    {
+      "name": "Rippling",
+      "image": "bilder/083-rippling.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/rippling.png"
+    },
+    {
+      "name": "Rivian",
+      "image": "bilder/084-rivian.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/rivian.png"
+    },
+    {
+      "name": "Robinhood",
+      "image": "bilder/085-robinhood.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/robinhood.png"
+    },
+    {
+      "name": "Roblox",
+      "image": "bilder/086-roblox.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/roblox.png"
+    },
+    {
+      "name": "Salesforce",
+      "image": "bilder/087-salesforce.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/salesforce.png"
+    },
+    {
+      "name": "Samsara",
+      "image": "bilder/088-samsara.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/samsara.png"
+    },
+    {
+      "name": "Samsung",
+      "image": "bilder/089-samsung.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/samsung.png"
+    },
+    {
+      "name": "SAP",
+      "image": "bilder/090-sap.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/sap.png"
+    },
+    {
+      "name": "Scale AI",
+      "image": "bilder/091-scale-ai.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/scaleai.png"
+    },
+    {
+      "name": "SeatGeek",
+      "image": "bilder/092-seatgeek.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/seatgeek.png"
+    },
+    {
+      "name": "ServiceNow",
+      "image": "bilder/093-servicenow.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/servicenow.png"
+    },
+    {
+      "name": "Shopify",
+      "image": "bilder/094-shopify.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/shopify.png"
+    },
+    {
+      "name": "Slack",
+      "image": "bilder/095-slack.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/slack.png"
+    },
+    {
+      "name": "Snowflake",
+      "image": "bilder/096-snowflake.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/snowflake.png"
+    },
+    {
+      "name": "Sony",
+      "image": "bilder/097-sony.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/sony.png"
+    },
+    {
+      "name": "SpaceX",
+      "image": "bilder/098-spacex.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/spacex.png",
+      "bg": "#000"
+    },
+    {
+      "name": "Splunk",
+      "image": "bilder/099-splunk.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/splunk.png"
+    },
+    {
+      "name": "Spotify",
+      "image": "bilder/100-spotify.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/spotify.png"
+    },
+    {
+      "name": "Stripe",
+      "image": "bilder/101-stripe.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/stripe.png"
+    },
+    {
+      "name": "Tencent",
+      "image": "bilder/102-tencent.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/tencent.png"
+    },
+    {
+      "name": "Tesla",
+      "image": "bilder/103-tesla.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/tesla.png"
+    },
+    {
+      "name": "Texas Instruments",
+      "image": "bilder/104-texas-instruments.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/texasinstruments.png"
+    },
+    {
+      "name": "TikTok",
+      "image": "bilder/105-tiktok.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/tiktok.png"
+    },
+    {
+      "name": "The Trade Desk",
+      "image": "bilder/106-the-trade-desk.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/tradedesk.png"
+    },
+    {
+      "name": "TSMC",
+      "image": "bilder/107-tsmc.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/tsmc.png"
+    },
+    {
+      "name": "Twitch",
+      "image": "bilder/108-twitch.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/twitch.png"
+    },
+    {
+      "name": "Uber",
+      "image": "bilder/109-uber.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/uber.png"
+    },
+    {
+      "name": "Unity",
+      "image": "bilder/110-unity.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/unity.png"
+    },
+    {
+      "name": "Valve",
+      "image": "bilder/111-valve.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/valve.png"
+    },
+    {
+      "name": "Vercel",
+      "image": "bilder/112-vercel.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/vercel.png"
+    },
+    {
+      "name": "Walmart",
+      "image": "bilder/113-walmart.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/walmart.png"
+    },
+    {
+      "name": "Waymo",
+      "image": "bilder/114-waymo.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/waymo.png"
+    },
+    {
+      "name": "Western Digital",
+      "image": "bilder/115-western-digital.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/westerndigital.png"
+    },
+    {
+      "name": "Whatnot",
+      "image": "bilder/116-whatnot.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/whatnot.png"
+    },
+    {
+      "name": "Workday",
+      "image": "bilder/117-workday.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/workday.png"
+    },
+    {
+      "name": "X",
+      "image": "bilder/118-x.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/everythingapp.png"
+    },
+    {
+      "name": "xAI",
+      "image": "bilder/119-xai.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/x-ai.png"
+    },
+    {
+      "name": "Yahoo",
+      "image": "bilder/120-yahoo.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/yahoo.png"
+    },
+    {
+      "name": "Zendesk",
+      "image": "bilder/121-zendesk.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/zendesk.png"
+    },
+    {
+      "name": "Zillow",
+      "image": "bilder/122-zillow.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/zillow.png"
+    },
+    {
+      "name": "Zoom",
+      "image": "bilder/123-zoom.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/19189843/tech-companies-19189843/zoom.png"
+    }
+  ]
+}

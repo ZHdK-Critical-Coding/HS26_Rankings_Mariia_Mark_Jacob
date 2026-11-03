@@ -1,0 +1,400 @@
+{
+  "source": "https://tiermaker.com/create/all-humanoid-robot-companies-17808379",
+  "firmen": [
+    {
+      "name": "1X Tech",
+      "image": "bilder/001-1x-tech.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-1x-tech.png"
+    },
+    {
+      "name": "AgiBot",
+      "image": "bilder/002-agibot.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-agibot.png"
+    },
+    {
+      "name": "Agility Robotics",
+      "image": "bilder/003-agility-robotics.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-aginity-robotics.png"
+    },
+    {
+      "name": "Android Technics",
+      "image": "bilder/004-android-technics.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-android-technics-scientific-production-association.png"
+    },
+    {
+      "name": "Apptronik",
+      "image": "bilder/005-apptronik.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-apptronik.png"
+    },
+    {
+      "name": "Astribot",
+      "image": "bilder/006-astribot.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-astribot.png"
+    },
+    {
+      "name": "Boardwalk Robotics",
+      "image": "bilder/007-boardwalk-robotics.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-boardwalk-robotics.png"
+    },
+    {
+      "name": "Booster Robotics",
+      "image": "bilder/008-booster-robotics.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-booster-robotics.png"
+    },
+    {
+      "name": "Borg Robotics",
+      "image": "bilder/009-borg-robotics.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/zzzzz-1738009567logo-borg-robotics.png"
+    },
+    {
+      "name": "Boston Dynamics",
+      "image": "bilder/010-boston-dynamics.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-boston-dynamics.png"
+    },
+    {
+      "name": "CASBOT",
+      "image": "bilder/011-casbot.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-casbot.png"
+    },
+    {
+      "name": "CAST University of Tehran",
+      "image": "bilder/012-cast-university-of-tehran.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-cast-univerity-of-tehran.png"
+    },
+    {
+      "name": "Clone Robotics",
+      "image": "bilder/013-clone-robotics.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-clone-robotics.png"
+    },
+    {
+      "name": "DEEP Robotics",
+      "image": "bilder/014-deep-robotics.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-deep-robotics.png"
+    },
+    {
+      "name": "Diligent Robots",
+      "image": "bilder/015-diligent-robots.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-diligent-robots.png"
+    },
+    {
+      "name": "DLR Institute of Robotics",
+      "image": "bilder/016-dlr-institute-of-robotics.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-dlr-institute-of-robotics.png"
+    },
+    {
+      "name": "Enchanted Tools",
+      "image": "bilder/017-enchanted-tools.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-enchanted-tools.png"
+    },
+    {
+      "name": "EngineAI",
+      "image": "bilder/018-engineai.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-engineai.png"
+    },
+    {
+      "name": "Engineered Arts",
+      "image": "bilder/019-engineered-arts.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-engineered-ars.png"
+    },
+    {
+      "name": "EX Robots",
+      "image": "bilder/020-ex-robots.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-ex-robots.png"
+    },
+    {
+      "name": "Figure",
+      "image": "bilder/021-figure.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-figure.png"
+    },
+    {
+      "name": "Fourier",
+      "image": "bilder/022-fourier.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-fourier.png"
+    },
+    {
+      "name": "GAC Group",
+      "image": "bilder/023-gac-group.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-gac-grup.png"
+    },
+    {
+      "name": "OpenLoong",
+      "image": "bilder/024-openloong.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-gac-humanoid-robot-openloong.png"
+    },
+    {
+      "name": "Galbot",
+      "image": "bilder/025-galbot.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-galbot.png"
+    },
+    {
+      "name": "GITAI",
+      "image": "bilder/026-gitai.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-gitai.png"
+    },
+    {
+      "name": "Hanson Robotics",
+      "image": "bilder/027-hanson-robotics.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-hanson-robotics.png"
+    },
+    {
+      "name": "Hitachi",
+      "image": "bilder/028-hitachi.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-hitachi.png"
+    },
+    {
+      "name": "Honda",
+      "image": "bilder/029-honda.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-honda.png"
+    },
+    {
+      "name": "Humanoid",
+      "image": "bilder/030-humanoid.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-humanoid.png"
+    },
+    {
+      "name": "Istituto Italiano di Tecnologia",
+      "image": "bilder/031-istituto-italiano-di-tecnologia.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-iit-instituto-italiano-di-tecnologia.png"
+    },
+    {
+      "name": "Intbot",
+      "image": "bilder/032-intbot.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-intbot.png"
+    },
+    {
+      "name": "Kawada Robotics",
+      "image": "bilder/033-kawada-robotics.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-kawada-robotics.png"
+    },
+    {
+      "name": "Kepler Robotics",
+      "image": "bilder/034-kepler-robotics.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-kepler-robotics.png"
+    },
+    {
+      "name": "KIST",
+      "image": "bilder/035-kist.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-kist.png"
+    },
+    {
+      "name": "KIT H2T",
+      "image": "bilder/036-kit-h2t.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-kit-h2t.png"
+    },
+    {
+      "name": "Leju Robot",
+      "image": "bilder/037-leju-robot.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-leju-robot.png"
+    },
+    {
+      "name": "LimX Dynamics",
+      "image": "bilder/038-limx-dynamics.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-limx-dynamics.png"
+    },
+    {
+      "name": "Lumos Robotics",
+      "image": "bilder/039-lumos-robotics.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-lumos-robotics.png"
+    },
+    {
+      "name": "Macco",
+      "image": "bilder/040-macco.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-macco.png"
+    },
+    {
+      "name": "MagicLab",
+      "image": "bilder/041-magiclab.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-magiclab.png"
+    },
+    {
+      "name": "Matrix Robotics",
+      "image": "bilder/042-matrix-robotics.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-matrix-robotics.png"
+    },
+    {
+      "name": "Mentee Robotics",
+      "image": "bilder/043-mentee-robotics.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-mentee-robotics.png"
+    },
+    {
+      "name": "Naver Labs",
+      "image": "bilder/044-naver-labs.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-naver-labs.png"
+    },
+    {
+      "name": "Noetix",
+      "image": "bilder/045-noetix.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-neotix.png"
+    },
+    {
+      "name": "Neura",
+      "image": "bilder/046-neura.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-neura.png"
+    },
+    {
+      "name": "Osaka University Ishiguro Lab",
+      "image": "bilder/047-osaka-university-ishiguro-lab.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-osaka-university-ishiguro-lab.png"
+    },
+    {
+      "name": "Oversonic",
+      "image": "bilder/048-oversonic.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-oversonic.png"
+    },
+    {
+      "name": "PAL Robotics",
+      "image": "bilder/049-pal-robotics.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-pal-robotics.png"
+    },
+    {
+      "name": "Paxini",
+      "image": "bilder/050-paxini.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-paxini.png"
+    },
+    {
+      "name": "PNDbotics",
+      "image": "bilder/051-pndbotics.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-pnd-botics.png"
+    },
+    {
+      "name": "Pollen Robotics",
+      "image": "bilder/052-pollen-robotics.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-pollen-robotics.png"
+    },
+    {
+      "name": "Promobot",
+      "image": "bilder/053-promobot.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-promobot.png"
+    },
+    {
+      "name": "Pudu Robotics",
+      "image": "bilder/054-pudu-robotics.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-pudu-robotics.png"
+    },
+    {
+      "name": "QSS AI and Robots",
+      "image": "bilder/055-qss-ai-and-robots.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-qss-ai-and-robots.png"
+    },
+    {
+      "name": "Realbotix",
+      "image": "bilder/056-realbotix.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-realbotix.png"
+    },
+    {
+      "name": "Realman Robotics / Open Droids",
+      "image": "bilder/057-realman-robotics-open-droids.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/zzzzz-1737992139logo-realman-robotics-open-droids.png"
+    },
+    {
+      "name": "Richtech Robotics",
+      "image": "bilder/058-richtech-robotics.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-richtech-robotics.png"
+    },
+    {
+      "name": "RoboForce",
+      "image": "bilder/059-roboforce.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-robo-force.png"
+    },
+    {
+      "name": "RoboSense",
+      "image": "bilder/060-robosense.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-robosense.png"
+    },
+    {
+      "name": "RobotEra",
+      "image": "bilder/061-robotera.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-robotera.png"
+    },
+    {
+      "name": "Samsung / Rainbow Robotics / KAIST",
+      "image": "bilder/062-samsung-rainbow-robotics-kaist.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/zzzzz-1737989025logo-samsumg-rainbow-robotics-kaist.png"
+    },
+    {
+      "name": "Sanctuary AI",
+      "image": "bilder/063-sanctuary-ai.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-sanctuari-ai.png"
+    },
+    {
+      "name": "SoftBank / Aldebaran",
+      "image": "bilder/064-softbank-aldebaran.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-soft-bank-y-albeberan.png"
+    },
+    {
+      "name": "Tencent Robotics X",
+      "image": "bilder/065-tencent-robotics-x.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-tencent-robotics-x.png"
+    },
+    {
+      "name": "Tesla",
+      "image": "bilder/066-tesla.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-tesla.png"
+    },
+    {
+      "name": "THK",
+      "image": "bilder/067-thk.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-thk.png"
+    },
+    {
+      "name": "Ti5 Robot",
+      "image": "bilder/068-ti5-robot.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-ti5robot.png"
+    },
+    {
+      "name": "TLIBOT",
+      "image": "bilder/069-tlibot.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-tlibot.png"
+    },
+    {
+      "name": "Toyota Research Institute",
+      "image": "bilder/070-toyota-research-institute.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-toyota-reseach-institute.png"
+    },
+    {
+      "name": "UBTECH",
+      "image": "bilder/071-ubtech.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-ubtech.png"
+    },
+    {
+      "name": "Unitree",
+      "image": "bilder/072-unitree.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-unitree.png"
+    },
+    {
+      "name": "UniX AI",
+      "image": "bilder/073-unix-ai.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-unix-ai.png"
+    },
+    {
+      "name": "Walt Disney Imagineering",
+      "image": "bilder/074-walt-disney-imagineering.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-walt-disney-imagineering.png"
+    },
+    {
+      "name": "Weave",
+      "image": "bilder/075-weave.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-weave.png"
+    },
+    {
+      "name": "X-Humanoid",
+      "image": "bilder/076-x-humanoid.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-x-humanoid-beijing-humanoid-robot-innovation-center.png"
+    },
+    {
+      "name": "Xiaomi",
+      "image": "bilder/077-xiaomi.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-xiaomi.png"
+    },
+    {
+      "name": "XPeng",
+      "image": "bilder/078-xpeng.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-xpeng.png"
+    },
+    {
+      "name": "Zhejiang Lab",
+      "image": "bilder/079-zhejiang-lab.png",
+      "source": "https://tiermaker.com/images/media/template_images/2024/17808379/all-humanoid-robot-companies-17808379/logo-zhejiang-lab.png"
+    }
+  ]
+}

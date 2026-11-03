@@ -234,7 +234,8 @@
         background: #333;
         color: var(--paper);
         font-family: var(--f-display);
-        font-size: min(2.4vh, 4.6vw);
+        /* wird mit jeder Liste kleiner, damit die Beschriftung in die Taste passt */
+        font-size: min(2.4vh, calc(100vw / var(--lists) / 5.6));
         text-transform: uppercase;
         letter-spacing: 0.04em;
         cursor: pointer;
@@ -450,6 +451,7 @@
         display: block;
         height: min(14vh, 30vw);
         border: 3px solid var(--paper);
+        background: var(--paper); /* transparente Logos bleiben auf der dunklen Bühne lesbar */
       }
 
       #big-emoji.evaluating {
@@ -749,6 +751,10 @@
 
     <script src="filme/filme.js"></script>
     <script src="personen/personen.js"></script>
+    <script src="objekte/objekte.js"></script>
+    <script src="wifi/wifi.js"></script>
+    <script src="roboter/roboter.js"></script>
+    <script src="tech/tech.js"></script>
     <script>
       const EMOJIS = [
         ["😂", "face tears of joy"],
@@ -894,6 +900,66 @@
             image: p.image,
           })),
         },
+        {
+          id: "objekte",
+          label: "Objekte",
+          keys: [
+            "Peinlichkeit an der Kasse",
+            "Eignung als Hochzeitsgeschenk",
+            "Nutzen auf einer einsamen Insel",
+          ],
+          aspect: 1,
+          fit: "contain", // Bilder sind unterschiedlich hoch und sollen nicht beschnitten werden
+          items: (window.OBJEKTE || []).map((o) => ({
+            name: o.name,
+            image: o.image,
+          })),
+        },
+        {
+          id: "wifi",
+          label: "WiFi",
+          keys: [
+            "WLAN-Bedürftigkeit",
+            "Passwort-Vergesslichkeit",
+            "Funkloch-Resilienz",
+          ],
+          aspect: 3 / 4,
+          fit: "contain",
+          items: (window.WIFI || []).map((o) => ({
+            name: o.name,
+            image: o.image,
+          })),
+        },
+        {
+          id: "roboter",
+          label: "Roboter",
+          keys: [
+            "Weltherrschaftsambition",
+            "Treppen-Selbstvertrauen",
+            "Umarmungssicherheit",
+          ],
+          aspect: 1,
+          items: (window.ROBOTER || []).map((r) => ({
+            name: r.name,
+            image: r.image,
+          })),
+        },
+        {
+          id: "tech",
+          label: "Tech",
+          keys: [
+            "Datenhunger",
+            "Abo-Kündigungs-Schwierigkeit",
+            "Keynote-Pathos",
+          ],
+          aspect: 1,
+          fit: "contain",
+          items: (window.TECH || []).map((t) => ({
+            name: t.name,
+            image: t.image,
+            bg: t.bg,
+          })),
+        },
       ].filter((l) => l.items.length);
 
       // Score-Grenzen der Tiers, die Plätze sind unbegrenzt. Unter 10 geht es endgültig in RAUS.
@@ -989,6 +1055,7 @@
 
       function buildSwitch() {
         const box = document.getElementById("mode-switch");
+        box.style.setProperty("--lists", LISTS.length);
         LISTS.forEach((l) => {
           const b = document.createElement("button");
           b.type = "button";
@@ -1132,6 +1199,8 @@
         const img = document.createElement("img");
         img.src = e.image;
         img.alt = e.name;
+        if (list.fit) img.style.objectFit = list.fit;
+        if (e.bg) img.style.background = e.bg; // für helle Logos, die auf Weiss verschwinden
         holder.appendChild(img);
       }
 
