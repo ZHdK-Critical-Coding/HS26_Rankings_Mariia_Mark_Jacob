@@ -755,6 +755,9 @@
     <script src="wifi/wifi.js"></script>
     <script src="roboter/roboter.js"></script>
     <script src="tech/tech.js"></script>
+    <!-- RankFeed: macht aus dem Ranking Artikel, braucht server.py -->
+    <script src="rankfeed/texts.js"></script>
+    <script src="rankfeed/generator.js"></script>
     <script>
       const EMOJIS = [
         ["😂", "face tears of joy"],
@@ -1032,6 +1035,7 @@
         }));
         placed = [];
         queue = [...entries].sort(() => Math.random() - 0.5).map((e) => e.id);
+        window.RankFeedGen?.listStart(list);
         later(runNext, 600);
       }
 
@@ -1074,6 +1078,7 @@
           (l) => l.id === new URLSearchParams(location.search).get("liste"),
         );
         window.addEventListener("resize", layout);
+        window.RankFeedGen?.init({ lists: LISTS, state: () => ({ list, entries }) });
         buildSwitch();
         loadList(wanted || LISTS[0]);
         setTimeout(driftTick, 2000);
@@ -1281,6 +1286,7 @@
         setCardScore(e, e.score);
         flag(e.card, "stamp", 550);
         layout();
+        window.RankFeedGen?.placed(e);
 
         document.getElementById("big-emoji").classList.remove("evaluating");
         setPreview(e.tier);
@@ -1306,6 +1312,7 @@
         if (queue.length || placed.some((e) => e.ghost) || listed().length)
           return;
         setStatus("Alle raus");
+        window.RankFeedGen?.collapse();
         later(() => loadList(list), RESTART_MS);
       }
 
@@ -1370,12 +1377,14 @@
             (1 + Math.floor(Math.random() * DRIFT_MAX)) *
             (Math.random() < 0.5 ? -1 : 1);
           const before = e.score;
+          const from = e.tier;
           e.v = e.v.map((v) => clamp(v + delta));
           e.score = calcScore(e.v);
           setCardScore(e, e.score);
           e.tier = tierOfScore(e.score);
           showPop(e, e.score - before);
           layout();
+          window.RankFeedGen?.drift(e, e.score - before, from);
           restartIfEmpty();
         }
         setTimeout(driftTick, 3000 + Math.random() * 2000);

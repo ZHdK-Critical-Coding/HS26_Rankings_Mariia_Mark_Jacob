@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>RankFeed</title>
+    <meta name="theme-color" content="#ffffff" />
+    <!-- Calistoga für die Überschriften, ohne Internet fällt es auf Georgia zurück -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" />
+    <style>
+      /*
+        RankFeed: Feed zur Tierlist im Stil einer Clickbait-Newsseite.
+        Holt die Artikel alle paar Sekunden von server.py (/api/articles).
+      */
+      :root {
+        --ink: #222222;
+        --muted: #6b6b6b;
+        --line: #e4e4e4;
+        --paper: #ffffff;
+        --soft: #f4f4f4;
+        --red: #ee3322;
+        --purple: #5246f5;
+        --purple-soft: #eceaff;
+        --badge: #cdebff;
+        --yellow: #ffe500;
+
+        --tier-s: #ff0a54;
+        --tier-a: #00d95f;
+        --tier-b: #ff6b00;
+        --tier-c: #ffe500;
+        --tier-d: #00c2ff;
+        --tier-x: #555555;
+
+        --f-serif: Calistoga, Georgia, "Times New Roman", serif;
+        --f-sans: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        --f-impact: Impact, "Arial Black", sans-serif;
+        --gutter: 16px;
+        color-scheme: light;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { -webkit-text-size-adjust: 100%; }
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--f-sans);
+        font-size: 17px;
+        line-height: 1.45;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      a { color: inherit; text-decoration: none; }
+      button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+      img { display: block; max-width: 100%; }
+
+      .wrap { max-width: 680px; margin: 0 auto; padding: 0 var(--gutter); }
+
+      /* ── Kopf ── */
+      .top {
+        position: sticky; top: 0; z-index: 20;
+        background: var(--paper);
+        border-bottom: 1px solid var(--line);
+        padding-top: env(safe-area-inset-top, 0px);
+      }
+      .top-row { display: flex; align-items: center; gap: 12px; height: 56px; }
+      .burger { width: 24px; height: 18px; display: grid; gap: 5px; align-content: center; }
+      .burger span { display: block; height: 3px; background: var(--ink); border-radius: 2px; }
+      .logo {
+        font-family: var(--f-sans);
+        font-weight: 900;
+        font-size: 30px;
+        letter-spacing: -0.03em;
+        color: var(--red);
+        line-height: 1;
+      }
+      .logo b { color: var(--ink); font-weight: 900; }
+      .live {
+        margin-left: auto;
+        display: flex; align-items: center; gap: 6px;
+        font-weight: 800; font-size: 13px; letter-spacing: .06em;
+      }
+      .live i { width: 9px; height: 9px; border-radius: 50%; background: var(--red); animation: blink 1.2s steps(2) infinite; }
+      .live.off i { background: #aaa; animation: none; }
+      .live.off { color: var(--muted); }
+      @keyframes blink { 50% { opacity: .2; } }
+
+      .pills {
+        display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none;
+        padding: 10px var(--gutter); max-width: 680px; margin: 0 auto;
+        border-top: 1px solid var(--line);
+      }
+      .pills::-webkit-scrollbar { display: none; }
+      .pill {
+        flex: 0 0 auto; white-space: nowrap;
+        font-weight: 700; font-size: 15px; color: var(--muted);
+        padding: 4px 2px;
+      }
+      .pill.on { color: var(--ink); box-shadow: inset 0 -3px 0 var(--red); }
+      .pill.trend { display: flex; align-items: center; gap: 6px; color: var(--ink); }
+      .trend-dot {
+        width: 24px; height: 24px; border-radius: 50%; background: var(--red);
+        display: grid; place-items: center;
+      }
+
+      .ticker {
+        display: flex; gap: 8px; align-items: center;
+        background: var(--ink); color: var(--paper);
+        font-size: 14px; font-weight: 700;
+        padding: 8px var(--gutter);
+        overflow: hidden; white-space: nowrap;
+      }
+      .ticker[hidden] { display: none; }
+      .ticker strong { background: var(--yellow); color: var(--ink); padding: 1px 6px; font-family: var(--f-impact); font-weight: 400; letter-spacing: .04em; flex: 0 0 auto; }
+      .ticker span { overflow: hidden; text-overflow: ellipsis; }
+
+      .new-pill {
+        position: fixed; top: 128px; left: 50%; z-index: 30;
+        transform: translateX(-50%);
+        background: var(--purple); color: #fff;
+        font-weight: 800; font-size: 15px;
+        padding: 10px 18px; border-radius: 999px;
+        box-shadow: 0 6px 20px rgba(82,70,245,.35);
+        animation: drop .4s cubic-bezier(.3,1.6,.6,1);
+      }
+      @keyframes drop { from { transform: translate(-50%, -30px); opacity: 0; } }
+
+      /* ── Startseite ── */
+      .section-head {
+        display: flex; align-items: baseline; justify-content: space-between;
+        margin: 28px 0 14px;
+      }
+      .section-head h2 { font-family: var(--f-serif); font-weight: 400; font-size: 30px; line-height: 1.1; }
+      .section-head a { color: var(--purple); font-weight: 800; font-size: 18px; }
+
+      .card-big { display: block; margin-bottom: 22px; }
+      .card-big .thumb { aspect-ratio: 16 / 10; border-radius: 10px; }
+      .card-big h3 { font-size: 23px; line-height: 1.25; font-weight: 800; margin-top: 12px; }
+      .card-row { display: grid; grid-template-columns: 46% 1fr; gap: 14px; margin-bottom: 22px; align-items: start; }
+      .card-row .thumb { aspect-ratio: 4 / 3; border-radius: 8px; }
+      .card-row h3 { font-size: 16.5px; line-height: 1.25; font-weight: 800; }
+      .card-tag { display: inline-block; font-size: 12px; font-weight: 800; color: var(--red); letter-spacing: .04em; margin-bottom: 4px; }
+
+      .num {
+        position: absolute; top: 0; left: 0; z-index: 5;
+        background: var(--badge); color: var(--purple);
+        font-family: var(--f-serif); font-size: 26px; line-height: 1;
+        padding: 6px 10px 8px; border-bottom-right-radius: 10px;
+      }
+      .card-row .num { font-size: 19px; padding: 4px 7px 6px; }
+
+      .meta { display: flex; align-items: center; gap: 8px; margin-top: 8px; color: var(--muted); font-size: 15px; font-weight: 700; }
+      .bubbles { display: flex; }
+      .bubbles span {
+        width: 28px; height: 28px; border-radius: 50%;
+        background: var(--soft); border: 2px solid var(--paper);
+        display: grid; place-items: center; font-size: 15px;
+      }
+      .bubbles span + span { margin-left: -8px; }
+      .meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--muted); }
+      .meta svg { width: 19px; height: 19px; }
+
+      .empty { padding: 60px 0; text-align: center; color: var(--muted); }
+      .empty strong { display: block; color: var(--ink); font-family: var(--f-serif); font-weight: 400; font-size: 26px; margin-bottom: 8px; }
+
+      /* ── Thumbnails: Collagen aus den Tierlist-Bildern ── */
+      .thumb { position: relative; overflow: hidden; background: var(--soft); isolation: isolate; }
+      .thumb .m {
+        position: absolute; background: #fff; border: 4px solid #fff;
+        box-shadow: 0 6px 18px rgba(0,0,0,.28);
+        display: grid; place-items: center; overflow: hidden;
+      }
+      .thumb .m img { width: 100%; height: 100%; object-fit: contain; }
+      .thumb .m .emo { font-size: var(--emo, 60px); line-height: 1; }
+      .thumb .sticker {
+        position: absolute; z-index: 4;
+        background: var(--yellow); color: #000;
+        font-family: var(--f-impact); letter-spacing: .02em;
+        border: 3px solid #000; padding: .05em .35em;
+        font-size: clamp(14px, 6.5cqw, 40px);
+        white-space: nowrap;
+      }
+      .thumb .big-tier {
+        position: absolute; z-index: 1;
+        font-family: var(--f-impact); line-height: .8;
+        color: transparent; -webkit-text-stroke: 3px rgba(255,255,255,.85);
+        font-size: 62cqh;
+      }
+      .thumb svg.deco { position: absolute; z-index: 3; pointer-events: none; overflow: visible; }
+      .thumb { container-type: size; }
+      .thumb.gray .m img { filter: grayscale(1) contrast(1.1); }
+      .strip-rows { position: absolute; inset: 6%; display: grid; gap: 3%; }
+      .strip-row { display: grid; grid-template-columns: 13% 1fr; gap: 2%; min-height: 0; }
+      .strip-row b {
+        display: grid; place-items: center; background: #000;
+        font-family: var(--f-impact); font-weight: 400; font-size: 9cqh;
+      }
+      .strip-row div { display: flex; gap: 2%; padding: 1.5%; min-width: 0; min-height: 0; overflow: hidden; }
+      /* Bild liegt absolut, damit seine echte Grösse die Zeile nicht aufbläht */
+      .strip-row div span {
+        position: relative; aspect-ratio: 1; height: 100%; background: #fff; display: grid; place-items: center; overflow: hidden;
+        border: 1px solid #000; flex: 0 0 auto;
+      }
+      .strip-row div span img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+      .strip-row div span i { font-style: normal; font-size: 7cqh; line-height: 1; }
+
+      /* ── Artikel ── */
+      .hero-head { padding: 26px 0 22px; }
+      .tag {
+        display: inline-block; background: var(--ink); color: #fff;
+        font-weight: 800; font-size: 14px; letter-spacing: .03em;
+        padding: 4px 12px; border-radius: 999px; margin-bottom: 14px;
+      }
+      .hero-head h1 { font-family: var(--f-serif); font-weight: 400; font-size: clamp(30px, 8.6vw, 44px); line-height: 1.12; letter-spacing: -.005em; }
+      .dek { font-weight: 700; font-size: 19px; line-height: 1.35; margin-top: 12px; }
+      .posted { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 22px; font-size: 16px; }
+      .cmt-btn {
+        display: inline-flex; align-items: center; gap: 8px;
+        background: var(--purple); color: #fff; font-weight: 800; font-size: 15px;
+        padding: 9px 16px; border-radius: 999px; white-space: nowrap;
+      }
+      .cmt-btn svg { width: 18px; height: 18px; }
+
+      .byline { display: flex; gap: 12px; align-items: center; padding: 18px 0; border-bottom: 1px solid var(--line); }
+      .face { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; color: #fff; flex: 0 0 auto; }
+      .byline a { font-weight: 800; text-decoration: underline; }
+      .byline small { display: block; color: var(--muted); font-size: 14px; }
+      .byline .staff { display: inline-flex; align-items: center; gap: 5px; margin-left: 6px; }
+      .byline .staff i { width: 16px; height: 16px; border-radius: 50%; background: var(--red); display: inline-block; }
+
+      .hero-thumb { aspect-ratio: 16 / 10; margin: 20px 0 6px; border-radius: 10px; }
+      .credit { font-size: 12px; color: var(--muted); text-align: right; margin-bottom: 18px; }
+      .lead { font-size: 18px; margin-bottom: 26px; }
+      .item { margin-bottom: 34px; }
+      .item h2 { font-size: 21px; line-height: 1.3; font-weight: 700; margin-bottom: 12px; }
+      .item h2 em { font-style: normal; color: var(--purple); font-weight: 900; margin-right: 4px; }
+      .item .pic {
+        background: var(--soft); border-radius: 6px; margin-bottom: 12px;
+        display: grid; place-items: center; height: min(72vw, 340px); padding: 16px; position: relative;
+      }
+      .item .pic img {
+        max-width: 100%; max-height: calc(min(72vw, 340px) - 32px); width: auto;
+        object-fit: contain; box-shadow: 0 4px 14px rgba(0,0,0,.18); background: #fff;
+      }
+      .item .pic .emo { font-size: min(40vw, 190px); line-height: 1; }
+      .item .pic .chip {
+        position: absolute; left: 10px; bottom: 10px;
+        font-family: var(--f-impact); color: #000; font-size: 20px; padding: 0 10px; border: 2px solid #000;
+      }
+      .item .rumor { display: inline-block; background: var(--yellow); font-weight: 800; font-size: 12px; letter-spacing: .05em; padding: 1px 6px; margin-bottom: 6px; }
+      .bottom-line { background: var(--purple-soft); border-radius: 10px; padding: 18px; margin: 8px 0 30px; }
+      .bottom-line strong { display: block; font-family: var(--f-serif); font-weight: 400; font-size: 22px; margin-bottom: 6px; color: var(--purple); }
+
+      .reacts { display: flex; flex-wrap: wrap; gap: 8px; padding: 18px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+      .react {
+        display: flex; align-items: center; gap: 6px;
+        border: 2px solid var(--line); border-radius: 999px;
+        padding: 4px 12px 4px 8px; font-weight: 800; font-size: 15px;
+      }
+      .react span { font-size: 22px; }
+      .react.mine { border-color: var(--purple); background: var(--purple-soft); }
+
+      /* ── Kommentare ── */
+      .comments { padding: 24px 0 10px; }
+      .comments-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+      .seal {
+        width: 64px; height: 64px; border-radius: 50%;
+        border: 3px dashed var(--purple); color: var(--purple);
+        display: grid; place-items: center; transform: rotate(-12deg);
+        font-family: var(--f-impact); font-size: 12px; letter-spacing: .06em; text-align: center; line-height: 1;
+      }
+      .post-box textarea {
+        width: 100%; min-height: 64px; resize: vertical;
+        border: 2px solid var(--purple); border-radius: 10px;
+        padding: 12px; font: inherit; font-size: 16px; color: var(--ink);
+      }
+      .post-box button {
+        width: 100%; margin-top: 10px; background: var(--purple); color: #fff;
+        font-weight: 800; font-size: 18px; padding: 12px; border-radius: 999px;
+      }
+      .post-box small { display: block; text-align: center; color: var(--muted); font-size: 13px; margin-top: 8px; }
+      .count-row { display: flex; justify-content: space-between; align-items: baseline; margin: 26px 0 8px; }
+      .count-row h3 { font-family: var(--f-serif); font-weight: 400; font-size: 22px; }
+      .count-row span { font-weight: 800; font-size: 15px; }
+      .count-row span b { color: var(--purple); }
+      .c { display: grid; grid-template-columns: 40px 1fr; gap: 10px; padding: 14px 0; }
+      .c + .c { border-top: 1px solid var(--line); }
+      .c .av { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font-size: 20px; }
+      .c .who { font-size: 15px; color: var(--muted); }
+      .c .who a { color: var(--ink); font-weight: 800; text-decoration: underline; }
+      .c .top-c { display: inline-block; font-size: 11px; font-weight: 900; letter-spacing: .06em; color: var(--purple); margin-bottom: 2px; }
+      .c p { margin: 4px 0 6px; }
+      .c p .at { color: var(--purple); font-weight: 700; }
+      .c .acts { display: flex; gap: 16px; color: var(--purple); font-weight: 700; font-size: 14px; }
+      .replies { grid-column: 2; border-left: 2px solid var(--line); padding-left: 12px; }
+      .replies .c { padding: 10px 0; }
+      .replies .c + .c { border-top: 0; }
+      .c.fresh { animation: fresh 1.5s ease-out; }
+      @keyframes fresh { from { background: var(--purple-soft); } }
+
+      .more { padding: 10px 0 30px; }
+      footer { background: var(--soft); color: var(--muted); font-size: 14px; padding: 26px 0 calc(26px + env(safe-area-inset-bottom, 0px)); margin-top: 20px; }
+      footer .logo { font-size: 22px; display: block; margin-bottom: 8px; }
+    </style>
+  </head>
+  <body>
+    <header class="top">
+      <div class="wrap top-row">
+        <div class="burger" aria-hidden="true"><span></span><span></span><span></span></div>
+        <a class="logo" href="#/">Rank<b>Feed</b></a>
+        <div class="live" id="live"><i></i><span>LIVE</span></div>
+      </div>
+      <nav class="pills" id="pills"></nav>
+      <a class="ticker" id="ticker" hidden><strong>JUST IN</strong><span></span></a>
+    </header>
+
+    <button class="new-pill" id="newPill" hidden></button>
+    <main id="view" class="wrap"></main>
+
+    <footer>
+      <div class="wrap">
+        <span class="logo">Rank<b>Feed</b></span>
+        RankFeed is part of an art installation. Every event, quote, rumor and comment on this site is made up.
+        The rankings are generated live by a machine that does not care about you, or anything.
+      </div>
+    </footer>
+
+    <script>
+      const POLL_MS = 4000;
+      const TIER_COLOR = { S: "#FF0A54", A: "#00D95F", B: "#FF6B00", C: "#FFE500", D: "#00C2FF", X: "#555555" };
+      const HEAD_COLORS = { DRAMA: "#F2F79A", BREAKING: "#FFD3DE", RANKINGS: "#CFEFFF", CROSSOVER: "#E3DBFF", EXPLAINER: "#D7F5CF" };
+      const ICON_COMMENT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 5h16v11H9l-5 4z" stroke-linejoin="round"/></svg>';
+
+      let articles = []; // alle bekannten Artikel, neueste zuerst
+      let latest = 0;
+      let unseen = 0;
+      let online = true;
+      const mine = {}; // was dieser Besuch selbst geklickt oder geschrieben hat, bleibt nur auf diesem Handy
+
+      // ── Helfer ──
+      const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+      const $ = (id) => document.getElementById(id);
+
+      function rng(seedText) {
+        let s = 0;
+        for (const ch of seedText) s = (Math.imul(31, s) + ch.charCodeAt(0)) >>> 0;
+        return () => { s = (Math.imul(1664525, s) + 1013904223) >>> 0; return s / 0xffffffff; };
+      }
+
+      function ago(t) {
+        const s = Math.max(0, (Date.now() - t) / 1000);
+        if (s < 60) return "just now";
+        if (s < 3600) return `${Math.floor(s / 60)} min ago`;
+        if (s < 86400) return `${Math.floor(s / 3600)} h ago`;
+        return new Date(t).toLocaleDateString("en-US", { month: "short", day: "numeric" });
+      }
+
+      // Kommentare erscheinen erst, wenn ihre Zeit gekommen ist, so füllt sich die Spalte langsam
+      function visibleComments(a) {
+        const now = Date.now();
+        return a.comments
+          .filter((c) => c.at <= now)
+          .map((c) => ({ ...c, replies: c.replies.filter((r) => r.at <= now) }))
+          .concat(mine[a.id]?.comments || []);
+      }
+      const commentCount = (a) => visibleComments(a).reduce((n, c) => n + 1 + c.replies.length, 0);
+      const reactionTotal = (a) => Object.values(a.reactions).reduce((s, n) => s + n, 0) + (mine[a.id]?.react ? 1 : 0);
+      const topReactions = (a) => Object.entries(a.reactions).sort((x, y) => y[1] - x[1]).slice(0, 2).map(([e]) => e);
+
+      // ── Thumbnails ──
+      function mediaHTML(m, cls = "") {
+        if (m && m.image) return `<img src="${esc(m.image)}" alt="${esc(m.name)}" loading="lazy" class="${cls}">`;
+        return `<span class="emo ${cls}">${esc(m && m.emoji ? m.emoji : "❓")}</span>`;
+      }
+
+      function stickerHTML(t, rand) {
+        if (!t.sticker) return "";
+        const spots = ["top:7%;right:5%", "bottom:8%;right:6%", "bottom:9%;left:5%"];
+        const rot = (rand() * 14 - 7).toFixed(1);
+        return `<div class="sticker" style="${spots[Math.floor(rand() * spots.length)]};transform:rotate(${rot}deg)">${esc(t.sticker)}</div>`;
+      }
+
+      function markSVG(kind, rand, where) {
+        if (kind === "up" || kind === "down") {
+          const up = kind === "up";
+          return `<svg class="deco" viewBox="0 0 60 80" style="${where};width:16%"><path d="M30 ${up ? 4 : 76} L56 ${up ? 36 : 44} H40 V${up ? 76 : 4} H20 V${up ? 36 : 44} H4 Z" fill="${up ? "#00D95F" : "#FF1E1E"}" stroke="#000" stroke-width="4" stroke-linejoin="round"/></svg>`;
+        }
+        if (kind === "star") {
+          return `<svg class="deco" viewBox="0 0 100 100" style="${where};width:20%"><path d="M50 2 61 34 96 30 68 52 84 86 50 66 16 86 32 52 4 30 39 34Z" fill="#FFE500" stroke="#000" stroke-width="4" stroke-linejoin="round"/></svg>`;
+        }
+        // roter Kreis von Hand gezogen
+        const r = (rand() * 6 - 3).toFixed(1);
+        return `<svg class="deco" viewBox="0 0 100 70" style="${where};width:34%"><path d="M12 38 C10 14 58 4 82 16 C100 26 92 56 60 62 C30 68 8 56 10 34 C12 22 30 12 46 10" fill="none" stroke="#FF1E1E" stroke-width="5" stroke-linecap="round" transform="rotate(${r} 50 35)"/></svg>`;
+      }
+
+      function starburst(color) {
+        const pts = [];
+        for (let i = 0; i < 28; i++) {
+          const a = (i / 28) * Math.PI * 2;
+          const r = i % 2 ? 30 : 50;
+          pts.push(`${(50 + r * Math.cos(a)).toFixed(1)},${(50 + r * Math.sin(a)).toFixed(1)}`);
+        }
+        return `<svg class="deco" viewBox="0 0 100 100" style="z-index:0;left:18%;top:-20%;width:64%"><polygon points="${pts.join(" ")}" fill="${color}"/></svg>`;
+      }
+
+      function thumbHTML(a, cls = "") {
+        const t = a.thumb || {};
+        const rand = rng(a.id);
+        const m = t.m || [];
+        const tc = TIER_COLOR[t.tier] || "#5246F5";
+        let inner = "";
+        let bg = tc;
+
+        if (t.layout === "hero") {
+          bg = `repeating-linear-gradient(-45deg, rgba(255,255,255,.14) 0 14px, transparent 14px 28px), ${tc}`;
+          const rot = (rand() * 8 - 4).toFixed(1);
+          inner =
+            starburst(t.tier === "C" ? "#ffffff" : "#FFE500") +
+            `<div class="big-tier" style="left:3%;bottom:-6%">${t.tier === "X" ? "X" : esc(t.tier || "?")}</div>` +
+            `<div class="m" style="--emo:42cqh;left:29%;top:13%;width:42%;height:74%;transform:rotate(${rot}deg);z-index:2">${mediaHTML(m[0])}</div>` +
+            markSVG(t.mark, rand, "right:7%;top:16%") +
+            stickerHTML({ sticker: t.sticker }, () => 0.75);
+        } else if (t.layout === "duo") {
+          bg = "#111";
+          inner =
+            `<div class="m" style="--emo:40cqh;left:0;top:0;width:50%;height:100%;border:0;box-shadow:none">${mediaHTML(m[0])}</div>` +
+            `<div class="m" style="--emo:40cqh;left:50%;top:0;width:50%;height:100%;border:0;border-left:4px solid #111;box-shadow:none">${mediaHTML(m[1])}</div>` +
+            `<div style="position:absolute;z-index:3;left:6%;top:10%;width:38%;height:80%;border:5px solid #FF1E1E"></div>` +
+            markSVG("circle", rand, "left:54%;top:30%") +
+            stickerHTML(t, rand);
+        } else if (t.layout === "versus") {
+          const c2 = TIER_COLOR[t.tier2] || "#5246F5";
+          bg = `linear-gradient(110deg, ${tc} 0 50%, ${c2} 50% 100%)`;
+          inner =
+            `<div class="m" style="--emo:34cqh;left:6%;top:14%;width:36%;height:68%;transform:rotate(-5deg)">${mediaHTML(m[0])}</div>` +
+            `<div class="m" style="--emo:34cqh;right:6%;top:18%;width:36%;height:68%;transform:rotate(5deg)">${mediaHTML(m[1])}</div>` +
+            `<div style="position:absolute;z-index:4;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-8deg);font-family:var(--f-impact);font-size:34cqh;color:#FFE500;-webkit-text-stroke:4px #000;line-height:1">VS</div>`;
+        } else {
+          // Mini-Screenshot der Tierlist
+          bg = "#000";
+          const rows = (t.rows || []).filter((r) => r.t !== "X" || r.m.length);
+          const circled = Math.floor(rand() * rows.length);
+          inner =
+            `<div class="strip-rows" style="grid-template-rows:repeat(${rows.length || 1},minmax(0,1fr))">` +
+            rows
+              .map((r) => `<div class="strip-row"><b style="color:${TIER_COLOR[r.t]}">${r.t === "X" ? "RAUS" : r.t}</b><div style="background:${r.t === "X" ? "repeating-linear-gradient(-45deg,#2a2a2a 0 6px,#171717 6px 12px)" : TIER_COLOR[r.t]}">${r.m.map((x) => `<span>${x.image ? `<img src="${esc(x.image)}" alt="" loading="lazy">` : `<i>${esc(x.emoji || "")}</i>`}</span>`).join("")}</div></div>`)
+              .join("") +
+            `</div>` +
+            (t.mark === "down" ? markSVG("down", rand, "right:6%;top:10%") : markSVG("circle", rand, `left:${18 + rand() * 30}%;top:${(circled / Math.max(rows.length, 1)) * 80}%`)) +
+            stickerHTML(t, rand);
+        }
+        return `<div class="thumb ${t.tier === "X" ? "gray" : ""} ${cls}" style="background:${bg}">${inner}</div>`;
+      }
+
+      // ── Startseite ──
+      function metaHTML(a) {
+        const n = commentCount(a);
+        return `<div class="meta"><div class="bubbles">${topReactions(a).map((e) => `<span>${e}</span>`).join("")}</div>${reactionTotal(a)}${n ? `<i class="dot"></i>${ICON_COMMENT}${n}` : ""}</div>`;
+      }
+
+      function cardRow(a, num) {
+        return `<a class="card-row" href="#/a/${a.id}"><div class="thumb-wrap" style="position:relative">${num ? `<span class="num">${num}</span>` : ""}${thumbHTML(a)}</div><div><span class="card-tag">${esc(a.tag)} · ${esc(a.listLabel)}</span><h3>${esc(a.headline)}</h3>${metaHTML(a)}</div></a>`;
+      }
+
+      // Trending: viele Reaktionen und Kommentare, aber frische Artikel zählen mehr
+      function trendScore(a) {
+        const hours = (Date.now() - a.time) / 3600000;
+        return (reactionTotal(a) + commentCount(a) * 4) / Math.pow(hours + 2, 1.3);
+      }
+
+      function renderHome(filter) {
+        const pool = filter ? articles.filter((a) => a.list === filter) : articles;
+        if (!pool.length) {
+          $("view").innerHTML = online
+            ? `<div class="empty"><strong>Nothing ranked yet.</strong>The machine is warming up. Stay close.</div>`
+            : `<div class="empty"><strong>RankFeed is offline.</strong>Start server.py on the installation computer.</div>`;
+          return;
+        }
+        const trending = [...pool].sort((x, y) => trendScore(y) - trendScore(x)).slice(0, 4);
+        const rest = pool.filter((a) => !trending.includes(a));
+        const [first, ...others] = trending;
+        $("view").innerHTML =
+          `<div class="section-head"><h2>${filter ? esc(pool[0].listLabel) : "Trending Now"}</h2><a href="#/">See All ›</a></div>` +
+          `<a class="card-big" href="#/a/${first.id}"><div style="position:relative"><span class="num">1</span>${thumbHTML(first)}</div><h3>${esc(first.headline)}</h3>${metaHTML(first)}</a>` +
+          others.map((a, i) => cardRow(a, i + 2)).join("") +
+          (rest.length ? `<div class="section-head"><h2>Latest</h2></div>` + rest.map((a) => cardRow(a)).join("") : "");
+      }
+
+      function renderPills(active) {
+        const seen = [...new Map(articles.map((a) => [a.list, a.listLabel])).entries()];
+        $("pills").innerHTML =
+          `<a class="pill trend ${active === "" ? "on" : ""}" href="#/"><span class="trend-dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg></span>Trending</a>` +
+          seen.map(([id, label]) => `<a class="pill ${active === id ? "on" : ""}" href="#/list/${id}">${esc(label)}</a>`).join("");
+      }
+
+      function renderTicker() {
+        const a = articles[0];
+        $("ticker").hidden = !a;
+        if (!a) return;
+        $("ticker").href = `#/a/${a.id}`;
+        $("ticker").querySelector("span").textContent = a.headline;
+      }
+
+      // ── Artikel ──
+      function faceHTML(name) {
+        const initials = name.split(" ").map((w) => w[0]).join("").slice(0, 2);
+        const colors = ["#EE3322", "#5246F5", "#00A86B", "#FF6B00", "#0094D9"];
+        const c = colors[name.length % colors.length];
+        return `<div class="face" style="background:${c}">${esc(initials)}</div>`;
+      }
+
+      function commentHTML(c, top) {
+        const text = esc(c.text).replace(/^@(\S+)/, '<span class="at">@$1</span>');
+        return `<div class="c ${c.fresh ? "fresh" : ""}"><div class="av" style="background:${c.color}">${c.avatar}</div><div>` +
+          (top ? `<span class="top-c">TOP COMMENT</span><br>` : "") +
+          `<div class="who"><a>${esc(c.user)}</a> · ${ago(c.at)}</div><p>${text}</p>` +
+          `<div class="acts"><span>♡ ${c.likes}</span><span>↩ Reply</span></div></div>` +
+          (c.replies && c.replies.length ? `<div class="replies">${c.replies.map((r) => commentHTML(r)).join("")}</div>` : "") +
+          `</div>`;
+      }
+
+      function commentsHTML(a) {
+        const list = visibleComments(a);
+        const n = commentCount(a);
+        const topIdx = list.reduce((best, c, i) => (c.likes > (list[best]?.likes ?? -1) ? i : best), 0);
+        const sorted = list.map((c, i) => ({ c, i })).sort((x, y) => (y.i === topIdx) - (x.i === topIdx) || y.c.at - x.c.at);
+        return `<div class="count-row"><h3>${n} comment${n === 1 ? "" : "s"}</h3><span>Sort by: <b>Most Reacted ⌄</b></span></div>` +
+          (sorted.length ? sorted.map(({ c, i }) => commentHTML(c, i === topIdx && list.length > 1)).join("") : `<p style="color:var(--muted)">No comments yet. They are coming. They always come.</p>`);
+      }
+
+      function itemHTML(item, i) {
+        const chip = item.tier ? `<span class="chip" style="background:${TIER_COLOR[item.tier]};color:${item.tier === "X" ? "#fff" : "#000"}">${item.tier === "X" ? "RAUS" : item.tier + "-TIER"}</span>` : "";
+        return `<section class="item"><h2><em>${i + 1}.</em>${esc(item.title)}</h2>` +
+          (item.media ? `<div class="pic">${mediaHTML(item.media)}${chip}</div>` : "") +
+          (item.rumor ? `<span class="rumor">UNCONFIRMED</span>` : "") +
+          `<p>${esc(item.text)}</p></section>`;
+      }
+
+      function renderArticle(id) {
+        const a = articles.find((x) => x.id === id);
+        if (!a) {
+          $("view").innerHTML = `<div class="empty"><strong>This story is gone.</strong><a href="#/" style="color:var(--purple);font-weight:800">Back to RankFeed</a></div>`;
+          return;
+        }
+        const head = HEAD_COLORS[a.tag] || "#F2F79A";
+        const react = mine[a.id]?.react;
+        const more = articles.filter((x) => x !== a).slice(0, 4);
+        $("view").innerHTML =
+          `<div class="hero-head" style="background:${head};margin:0 calc(-1 * var(--gutter));padding-left:var(--gutter);padding-right:var(--gutter)">` +
+          `<span class="tag">${esc(a.tag)}</span><h1>${esc(a.headline)}</h1><p class="dek">${esc(a.dek)}</p>` +
+          `<div class="posted"><span>Posted ${ago(a.time)}</span><a class="cmt-btn" href="#c" onclick="document.getElementById('comments').scrollIntoView({behavior:'smooth'});return false">${ICON_COMMENT}<span id="cmtCount">${commentCount(a)}</span> Comments</a></div></div>` +
+          `<div class="byline">${faceHTML(a.author.name)}<div>by <a>${esc(a.author.name)}</a><span class="staff"><i></i>RankFeed Staff</span><small>${esc(a.author.role)}</small></div></div>` +
+          thumbHTML(a, "hero-thumb") +
+          `<div class="credit">Collage: RankFeed / Live Tierlist</div>` +
+          `<p class="lead">${esc(a.intro)}</p>` +
+          a.items.map(itemHTML).join("") +
+          `<div class="bottom-line"><strong>The Bottom Line</strong>${esc(a.outro)}</div>` +
+          `<div class="reacts">${Object.entries(a.reactions).map(([e, n]) => `<button class="react ${react === e ? "mine" : ""}" data-react="${e}"><span>${e}</span>${n + (react === e ? 1 : 0)}</button>`).join("")}</div>` +
+          `<div class="comments" id="comments"><div class="comments-head"><div class="seal">COMMENTS<br>★ ★ ★</div></div>` +
+          `<form class="post-box" id="postBox"><textarea id="postText" placeholder="Post a comment" maxlength="400"></textarea><button type="submit">Join the conversation</button><small>Your comment stays on this phone only. Nobody else will see it. Kind of like a diary.</small></form>` +
+          `<div id="commentList">${commentsHTML(a)}</div></div>` +
+          (more.length ? `<div class="more"><div class="section-head"><h2>More On RankFeed</h2></div>${more.map((x) => cardRow(x)).join("")}</div>` : "");
+
+        $("view").querySelectorAll("[data-react]").forEach((b) =>
+          b.addEventListener("click", () => {
+            const m = (mine[a.id] = mine[a.id] || {});
+            m.react = m.react === b.dataset.react ? null : b.dataset.react;
+            renderArticle(a.id);
+          }),
+        );
+        $("postBox").addEventListener("submit", (ev) => {
+          ev.preventDefault();
+          const text = $("postText").value.trim();
+          if (!text) return;
+          const m = (mine[a.id] = mine[a.id] || {});
+          m.comments = m.comments || [];
+          m.comments.push({ user: "you", avatar: "🫵", color: "#FFE500", text, likes: 0, at: Date.now(), replies: [], fresh: true });
+          $("postText").value = "";
+          refreshComments(a);
+        });
+      }
+
+      function refreshComments(a) {
+        const box = $("commentList");
+        if (!box) return;
+        box.innerHTML = commentsHTML(a);
+        $("cmtCount").textContent = commentCount(a);
+      }
+
+      // ── Navigation ──
+      function route() {
+        const hash = location.hash.slice(1);
+        $("newPill").hidden = true;
+        unseen = 0;
+        const art = hash.match(/^\/a\/(\w+)/);
+        const lst = hash.match(/^\/list\/(\w+)/);
+        renderPills(art ? null : lst ? lst[1] : "");
+        if (art) {
+          renderArticle(art[1]);
+          window.scrollTo(0, 0);
+        } else {
+          renderHome(lst ? lst[1] : null);
+        }
+      }
+
+      function onHome() {
+        return !location.hash.startsWith("#/a/");
+      }
+
+      // ── Neue Artikel abholen ──
+      async function poll() {
+        try {
+          const res = await fetch(`/api/articles?since=${latest}`, { cache: "no-store" });
+          const data = await res.json();
+          setOnline(true);
+          if (data.latest < latest) {
+            // Server wurde zurückgesetzt
+            articles = [];
+            latest = 0;
+            return poll();
+          }
+          if (data.articles.length) {
+            const fresh = data.articles.sort((x, y) => y.time - x.time);
+            const first = !articles.length;
+            articles = [...fresh, ...articles].sort((x, y) => y.time - x.time);
+            latest = data.latest;
+            renderTicker();
+            if (first) return route();
+            if (onHome() && window.scrollY < 150) route();
+            else if (onHome()) {
+              unseen += fresh.length;
+              $("newPill").textContent = `↑ ${unseen} new ${unseen === 1 ? "story" : "stories"}`;
+              $("newPill").hidden = false;
+            }
+          }
+        } catch (err) {
+          setOnline(false);
+          if (!articles.length) route();
+        }
+      }
+
+      function setOnline(on) {
+        if (on === online) return;
+        online = on;
+        $("live").classList.toggle("off", !on);
+        $("live").querySelector("span").textContent = on ? "LIVE" : "OFFLINE";
+      }
+
+      // Kommentare, deren Zeit gekommen ist, tauchen in einem offenen Artikel auf
+      setInterval(() => {
+        const m = location.hash.match(/^#\/a\/(\w+)/);
+        if (!m) return;
+        const a = articles.find((x) => x.id === m[1]);
+        if (a && $("cmtCount") && Number($("cmtCount").textContent) !== commentCount(a)) refreshComments(a);
+      }, 10000);
+
+      $("newPill").addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        route();
+      });
+      window.addEventListener("hashchange", route);
+      route();
+      poll();
+      setInterval(poll, POLL_MS);
+    </script>
+  </body>
+</html>
